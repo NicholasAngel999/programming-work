@@ -116,9 +116,20 @@ while True:
 while True:
     q_11 = input("what did mum do to annoy one of the toy soldiers whilst trying to take pictures? ").strip().lower()
     if q_11 == "stand on his feet":
+        print("so many times")
         score += 1
         break
     else: 
         print("that felt like an easy one")
         break
+
+while True:
+    q_12 = input("look at the attached q 12 help file. Where was this picture taken? ").strip().lower()
+    if q_12 == "Durham":
+        print("yes! do you remember the bus questions?")
+        score += 1
+        break
+    else:
+        print("How do you forget?")
+
 
