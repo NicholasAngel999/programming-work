@@ -175,6 +175,11 @@ while True:
         print("i basically gave you a point!")
         break
 
-
+while True:
+    countdown(3)
+    q_14 = input("in York in 2018, who won the clay pigeon shoot out? ").strip().lower()
+    if q_14 == "cole":
+        print("yes i did")
+        
 
 
