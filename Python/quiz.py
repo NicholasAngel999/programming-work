@@ -180,6 +180,38 @@ while True:
     q_14 = input("in York in 2018, who won the clay pigeon shoot out? ").strip().lower()
     if q_14 == "cole":
         print("yes i did")
-        
+        score += 1
+        break
+    else:
+        print("Dont Lie!")
+        break
+
+while True:
+    countdown(3)
+    q_15 = input('''on the 28th of october 2018 what nfl game did we watch? 
+                 name the two teams - answer with "team vs team" ''').strip().lower()
+    if q_15 == "jags vs eagles" or "jacksonville vs philidelphia" or "jaguars vs eagles" or "jacksonville jaguars vs philidelphia eagles" or "eagles vs jags" or "philidelphia vs jacksonville" or "eagles vs jaguars" or "philidelphia eagles vs jacksonville jaguars":
+        print("what a game!")
+        score += 1
+        break
+    else:
+        print("it was a great day and it was your team!")
+        break
+
+while True:
+    countdown(3)
+    q_16 = input("where else did we go on that trip? ").strip().lower()
+    if q_16 == "wizarding world" or "harry potter studio" or "harry potter":
+        print("yes! and i got some chocolate!")
+        score += 1
+        break
+    else:
+        print("aw howd you forget!")
+        break
+
+
+
+
+
 
 
