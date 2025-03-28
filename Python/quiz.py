@@ -209,7 +209,27 @@ while True:
         print("aw howd you forget!")
         break
 
+while True:
+    countdown(3)
+    q_17 =input("where did mum and i take esme in june of 2019? ").strip().lower()
+    if q_17 == "roche abbey":
+        print("we even found a little waterfall")
+        score += 1 
+        break
+    else:
+        print("not a holiday but it was a fun day")
+        break
 
+while True:
+    countdown(3)
+    q_18 = input("where did me and mum go mountain biking in august of 2019? ").strip().lower()
+    if q_18 == "kielder forrest" or "cresswell towers":
+        print("was a pretty cool diamond back")
+        score += 1 
+        break
+    else:
+        print("how can you forget that day we got lost")
+        break
 
 
 
