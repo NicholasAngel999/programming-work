@@ -68,3 +68,57 @@ while True:
         print("you had a 50/50!")
         break
 
+while True:
+    q_6 = input("look at image help yeti, and tell me what ride we were in the queue for when we saw this? ").strip().lower()
+    if q_6 == "expedition everest":
+        print("amazing memory")
+        score += 1
+        break
+    else:
+        print("that was a tough one")
+        break
+
+while True:
+    q_7 = input("do you remember which park that ride was from? ").strip().lower()
+    if q_7 == "animal kingdom":
+        print("tough one")
+        score += 1
+        break
+    else:
+        print("it could have been loads")
+
+while True:
+    q_8 = input("Which of the four swimming pools was the best at the art of animation? ").strip().lower()
+    if q_8 == "finding nemo":
+        score += 1
+        break
+    else:
+        print("cars was a close second for the cones")
+        break
+
+while True:
+    q_9 = input("on the 27th of october we went to the chocolate emporium. What milkshake did i get and which did mum get? ").strip().lower()
+    if q_9 == "chocolate brownie red velvet" or "chocolate brownie and red velvet":
+        score += 1 
+        break
+    else:
+        print("even i may be wrong here")
+
+while True:
+    q_10 = input("before the chocolate emporium we were in universal what ride caused mum to get a new shirt? just use character name. ").strip().lower()
+    if q_10 == "popeye":
+        score += 1
+        break
+    else:
+        print("how do you forget that!")
+        break
+
+while True:
+    q_11 = input("what did mum do to annoy one of the toy soldiers whilst trying to take pictures? ").strip().lower()
+    if q_11 == "stand on his feet":
+        score += 1
+        break
+    else: 
+        print("that felt like an easy one")
+        break
+
