@@ -61,4 +61,10 @@ while True:
 while True:
     question_5 = input("which was my favourite universal studios park? florida or california? ").strip().lower()
     if question_5 == "florida":
-        print("")
+        print("It was close but still florida")
+        score += 1
+        break
+    else:
+        print("you had a 50/50!")
+        break
+
