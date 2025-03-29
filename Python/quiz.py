@@ -231,6 +231,9 @@ while True:
         print("how can you forget that day we got lost")
         break
 
+while True:
+    countdown(3)
+    q_18 = input("")
 
 
 
