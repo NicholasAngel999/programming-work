@@ -48,7 +48,7 @@ while True:
         print("Good Guess! No Points")
         break
 
-t
+
 while True:
     countdown(3)
     question_3 = input("Which of our 3 visits to the USA was my favourite? Please answer either 1 2 or 3 ").strip().lower()
