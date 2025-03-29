@@ -4,7 +4,8 @@ print("Your the best mum ever! Here's a quiz to remember some amazing holiday me
 
 print('''FYI! when writing your answers please keep everything lower case and dont put a
       space at the end! If your answer is obviously right but it comes back wrong it
-      will be a syntax error just note it down for later''')
+      will be a syntax error just note it down for later. once your done you can open 
+      the other file i have sent you and you can look at the code and see all the right answers''')
 
 print(' Are you ready!')
 
@@ -289,7 +290,102 @@ while True:
 
 while True:
     countdown(3)
-    
+    q_23 = input("what date did we go to watch the ice hockey? ").strip().lower()
+    if q_23 == "29th october" or "29 october" or "29 oct" or "29th oct":
+        print("amazing day!")
+        score += 1
+        break
+    else:
+        print("can you get the next one?")
+        break
+
+while True:
+    countdown(3)
+    q_24 = input("what was the final score of the game? please write highest score - lowest score").strip().lower()
+    if q_24 == "7-4" or "7 - 4":
+        print("at least you got that one")
+        score += 1
+        break
+    else:
+        print(":(")
+        break
+
+while True:
+    countdown(3)
+    q_25 = input('''what was the date we set off from england headed for holland?'
+    'please format your answer to be 25 february 2025''').strip().lower()
+    if q_25 == "14 july 2023":
+        print("great")
+        score += 1 
+        break
+    else:
+        print("that one was recent")
+        break
+
+while True:
+    countdown(3)
+    q_26 = input('''we took a river boat ride through bruges with nana and grandpa.'
+    'what did nana keep doing at every bridge? ''').strip().lower()
+    if q_26 == "ducking" or "crouching" or "bedning over":
+        print("it was very amusing")
+        score += 1 
+        break
+    else:
+        print("how do you forget her ducking!")
+        break
+
+while True:
+    countdown(3)
+    q_27 = input("what happened to dads shorts in brugges? ").strip().lower()
+    if q_27 == "ripped":
+        print("hahaha")
+        score += 1 
+        break 
+    else:
+        print("no way you forgot!")
+        break
+
+while True:
+    countdown(3)
+    q_28 = input("what did we do on the 21 july 2023? ").strip().lower()
+    if q_28 == "big bike ride" or "long bike ride" or "cycle for a day" or "cycle" or "long day on the bike":
+        print("that was a long day")
+        score += 1
+        break
+    else:
+        print("it was a massive bike ride")
+        break
+
+while True:
+    countdown(3)
+    q_29 = input("what was mine and dads favourite drink whilst away? ").strip().lower()
+    if q_29 == "amstel radler":
+        print("it was refreshing")
+        score += 1 
+        break
+    else:
+        print("it was a refreshing amstel radler")
+        break
+
+while True:
+    q_30 = input("where did we get dragons breath from? ").strip().lower()
+    if q_30 == "market hall rotterdam" or "rotterdam":
+        print("they were funny")
+        score += 1 
+        break
+    else:
+        print("it was the market hall rotterdam")
+        break
+
+
+
+print(''' thank you for playing my quiz i hope it was fun and it made yoy remember some amazing'
+'memories. I hope the quiz worked propely and you have an amazing mothers day as an amazing mother!''').strip().lower()
+
+print(score"/30")
+
+print("happy mothers day!!!")
+
 
 
 
