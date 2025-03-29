@@ -233,7 +233,64 @@ while True:
 
 while True:
     countdown(3)
-    q_18 = input("")
+    q_18 = input("what hotel did we stay in at california? ").strip().lower()
+    if q_18 == "knotts berry farm" or "knotts farm" or "knott's farms":
+        print("easy")
+        score += 1
+        break
+    else:
+        print("come on")
+        break
+
+while True:
+    countdown(3)
+    q_19 = input("what was the best find of the first day? ").strip().lower()
+    if q_19 == "johnny rockets" or "snoopy" or "finding johnny rockets" or "finding snoopy":
+        print("obviously!")
+        score += 1 
+        break
+    else:
+        print("i even gave you two possible answers")
+        break
+
+while True:
+    countdown(3)
+    q_20 = input("what ride did we go on after meeting mike wazowski? ").strip().lower()
+    if q_20 == "ferris wheel":
+        print("stepping up now")
+        score += 1 
+        break
+    else:
+        print("getting harder")
+        break
+
+while True:
+    countdown(3)
+    q_21 = input("What did me and abbey have for breakfast in the hotel? ").strip().lower()
+    if q_21 == "pancakes":
+        print("they were massive!!!")
+        score += 1
+        break
+    else:
+        print("they were massive pancakes!")
+        break
+
+while True:
+    countdown(3)
+    q_22 = input('''where can the entrance to dumbledores office be found in universal'
+    'studios hollywood''').strip().lower()
+    if q_22 == "the forbidden journey" or "harry potter and the forbidden journey":
+        print("that one was crazy hard")
+        score += 1 
+        break
+    else:
+        print("i didnt expect you to know that")
+        break
+
+while True:
+    countdown(3)
+    
+
 
 
 
