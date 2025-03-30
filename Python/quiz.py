@@ -1,23 +1,33 @@
-print("Happy Mother's Day")
-
-print("Your the best mum ever! Here's a quiz to remember some amazing holiday memories")
-
-print('''FYI! when writing your answers please keep everything lower case and dont put a
-      space at the end! If your answer is obviously right but it comes back wrong it
-      will be a syntax error just note it down for later. once your done you can open 
-      the other file i have sent you and you can look at the code and see all the right answers''')
-
-print(' Are you ready!')
-
 import time
-
-score = 0
+import sys
 
 def countdown(seconds):
     #pass
     for i in range(seconds, 0, -1):
         print(i, end="...\n", flush=True)
         time.sleep(1)
+
+def type_text(text, delay=0.05):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print()
+
+
+score = 0
+
+type_text("Happy Mother's Day")
+
+type_text("Your the best mum ever! Here's a quiz to remember some amazing holiday memories")
+
+type_text('''FYI! when writing your answers please keep everything lower case and dont put a
+      space at the end! If your answer is obviously right but it comes back wrong it
+      will be a syntax error just note it down for later. once your done you can open 
+      the other file i have sent you and you can look at the code and see all the right answers''')
+
+print(' Are you ready!')
+
 
 while True:
     start = input("type 'yes' to continue: ").strip().lower()
@@ -417,13 +427,13 @@ while True:
 
 
 
-print(''' thank you for playing my quiz i hope it was fun and it made yoy remember some amazing'
+type_text(''' thank you for playing my quiz i hope it was fun and it made yoy remember some amazing'
 'memories. I hope the quiz worked propely and you have an amazing mothers day as an amazing mother!''')
 
-print(f"🏆 Your final score is: {score}/30! 🏆")
+type_text(f"🏆 Your final score is: {score}/30! 🏆")
 
 
-print("happy mothers day!!!")
+type_text("happy mothers day!!!")
 
 
 
