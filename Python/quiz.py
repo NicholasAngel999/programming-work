@@ -1,6 +1,7 @@
 import time
 import sys
 
+
 def countdown(seconds):
     #pass
     for i in range(seconds, 0, -1):
@@ -26,7 +27,7 @@ type_text('''FYI! when writing your answers please keep everything lower case an
       will be a syntax error just note it down for later. once your done you can open 
       the other file i have sent you and you can look at the code and see all the right answers''')
 
-print(' Are you ready!')
+type_text(' Are you ready!')
 
 
 while True:
@@ -39,7 +40,8 @@ while True:
 
 while True:
     countdown(3)
-    Question_1 = input("what was my favourite Holiday? ").strip().lower()
+    type_text("what was my favourite Holiday? ")
+    Question_1 = input().strip().lower()
     if Question_1 == "florida":
         print("Yes! 1 point!")
         score += 1
@@ -51,7 +53,8 @@ while True:
 
 while True:
     countdown(3)
-    question_2 = input("what was my favourite park at Disney World in Florida? ").strip().lower()
+    type_text("what was my favourite park at Disney World in Florida? ")
+    question_2 = input().strip().lower()
     if question_2 == "hollywood studios":
         print("Great Job! 1 Point!")
         score += 1
@@ -63,7 +66,8 @@ while True:
 
 while True:
     countdown(3)
-    question_3 = input("Which of our 3 visits to the USA was my favourite? Please answer either 1 2 or 3 ").strip().lower()
+    type_text("Which of our 3 visits to the USA was my favourite? Please answer either 1 2 or 3 ")
+    question_3 = input().strip().lower()
     if question_3 == "1":
         print("Yess! It was a great first experience 1 Point!")
         score += 1
@@ -75,7 +79,8 @@ while True:
 
 while True:
     countdown(3)
-    question_4 = input("What was my Favourite ride throughout all of the Disney Parks in Florida? ").strip().lower()
+    type_text("What was my Favourite ride throughout all of the Disney Parks in Florida? ")
+    question_4 = input().strip().lower()
     
     correct_answers_4 = ["tower of terror", "the tower of terror"]
 
@@ -90,7 +95,8 @@ while True:
 
 while True:
     countdown(3)
-    question_5 = input("which was my favourite universal studios park? florida or california? ").strip().lower()
+    type_text("which was my favourite universal studios park? florida or california? ")
+    question_5 = input().strip().lower()
     if question_5 == "florida":
         print("It was close but still florida")
         score += 1
@@ -102,7 +108,8 @@ while True:
 
 while True:
     countdown(3)
-    q_6 = input("look at image help yeti, and tell me what ride we were in the queue for when we saw this? ").strip().lower()
+    type_text("look at image help yeti, and tell me what ride we were in the queue for when we saw this? ")
+    q_6 = input().strip().lower()
     if q_6 == "expedition everest":
         print("amazing memory")
         score += 1
@@ -113,7 +120,8 @@ while True:
 
 while True:
     countdown(3)
-    q_7 = input("do you remember which park that ride was from? ").strip().lower()
+    type_text("do you remember which park that ride was from? ")
+    q_7 = input().strip().lower()
     if q_7 == "animal kingdom":
         print("tough one")
         score += 1
@@ -125,7 +133,8 @@ while True:
 
 while True:
     countdown(3)
-    q_8 = input("Which of the four swimming pools was the best at the art of animation? ").strip().lower()
+    type_text("Which of the four swimming pools was the best at the art of animation? ")
+    q_8 = input().strip().lower()
     if q_8 == "finding nemo":
         score += 1
         break
@@ -136,7 +145,8 @@ while True:
 
 while True:
     countdown(3)
-    q_9 = input("on the 27th of october we went to the chocolate emporium. What milkshake did i get and which did mum get? ").strip().lower()
+    type_text("on the 27th of october we went to the chocolate emporium. What milkshake did i get and which did mum get? ")
+    q_9 = input().strip().lower()
 
     correct_answers_9 = ["chocolate brownie red velvet", "chocolate brownie and red velvet"]
 
@@ -150,7 +160,8 @@ while True:
 
 while True:
     countdown(3)
-    q_10 = input("before the chocolate emporium we were in universal what ride caused mum to get a new shirt? just use character name. ").strip().lower()
+    type_text("before the chocolate emporium we were in universal what ride caused mum to get a new shirt? just use character name. ")
+    q_10 = input().strip().lower()
     if q_10 == "popeye":
         score += 1
         break
