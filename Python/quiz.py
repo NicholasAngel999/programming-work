@@ -1,6 +1,6 @@
 import time
 import sys
-
+#miss
 
 def countdown(seconds):
     #pass
@@ -172,7 +172,8 @@ while True:
 
 while True:
     countdown(3)
-    q_11 = input("what did mum do to annoy one of the toy soldiers whilst trying to take pictures? ").strip().lower()
+    type_text("what did mum do to annoy one of the toy soldiers whilst trying to take pictures? ")
+    q_11 = input().strip().lower()
     if q_11 == "stand on his feet":
         print("so many times")
         score += 1
@@ -184,7 +185,8 @@ while True:
 
 while True:
     countdown(3)
-    q_12 = input("look at the attached q 12 help file. Where was this picture taken? ").strip().lower()
+    type_text("look at the attached q 12 help file. Where was this picture taken? ")
+    q_12 = input().strip().lower()
     if q_12 == "durham":
         print("yes! do you remember the bus questions?")
         score += 1
@@ -195,7 +197,8 @@ while True:
 
 while True:
     countdown(3)
-    q_13 = input("whos harry potter room was in here? ").strip().lower()
+    type_text("whos harry potter room was in here? ")
+    q_13 = input().strip().lower()
     if q_13 == "mcgonagall":
         print("easy!")
         score += 1
@@ -206,7 +209,8 @@ while True:
 
 while True:
     countdown(3)
-    q_14 = input("in York in 2018, who won the clay pigeon shoot out? ").strip().lower()
+    type_text("in York in 2018, who won the clay pigeon shoot out? ")
+    q_14 = input().strip().lower()
     if q_14 == "cole":
         print("yes i did")
         score += 1
@@ -217,8 +221,9 @@ while True:
 
 while True:
     countdown(3)
-    q_15 = input('''on the 28th of october 2018 what nfl game did we watch? 
-                 name the two teams - answer with "team vs team" ''').strip().lower()
+    type_text('''on the 28th of october 2018 what nfl game did we watch? 
+                 name the two teams - answer with "team vs team" ''')
+    q_15 = input().strip().lower()
     
     correct_answers_15 = ["jags vs eagles", "jacksonville vs philidelphia", "jaguars vs eagles", "jacksonville jaguars vs philidelphia eagles", "eagles vs jags", "philidelphia vs jacksonville", "eagles vs jaguars", "philidelphia eagles vs jacksonville jaguars"]
 
@@ -232,7 +237,8 @@ while True:
 
 while True:
     countdown(3)
-    q_16 = input("where else did we go on that trip? ").strip().lower()
+    type_text("where else did we go on that trip? ")
+    q_16 = input().strip().lower()
 
     correct_answers_16 = ["wizarding world", "harry potter studio", "harry potter"]
 
@@ -246,7 +252,8 @@ while True:
 
 while True:
     countdown(3)
-    q_17 =input("where did mum and i take esme in june of 2019? ").strip().lower()
+    type_text("where did mum and i take esme in june of 2019? ")
+    q_17 =input().strip().lower()
     if q_17 == "roche abbey":
         print("we even found a little waterfall")
         score += 1 
@@ -257,7 +264,8 @@ while True:
 
 while True:
     countdown(3)
-    q_188 = input("where did me and mum go mountain biking in august of 2019? ").strip().lower()
+    type_text("where did me and mum go mountain biking in august of 2019? ")
+    q_188 = input().strip().lower()
 
     correct_answers_188 = ["kielder forrest", "cresswell towers"]
 
@@ -271,7 +279,8 @@ while True:
 
 while True:
     countdown(3)
-    q_18 = input("what hotel did we stay in at california? ").strip().lower()
+    type_text("what hotel did we stay in at california? ")
+    q_18 = input().strip().lower()
 
     correct_answers_18 = ["knotts berry farm", "knotts farm", "knott's farm"]
 
@@ -285,7 +294,8 @@ while True:
 
 while True:
     countdown(3)
-    q_19 = input("what was the best find of the first day? ").strip().lower()
+    type_text("what was the best find of the first day? ")
+    q_19 = input().strip().lower()
 
     correct_asnwers_19 = ["johnny rockets", "snoopy", "finding johnny rockets", "finding snoopy"]
 
@@ -299,7 +309,8 @@ while True:
 
 while True:
     countdown(3)
-    q_20 = input("what ride did we go on after meeting mike wazowski? ").strip().lower()
+    type_text("what ride did we go on after meeting mike wazowski? ")
+    q_20 = input().strip().lower()
     if q_20 == "ferris wheel":
         print("stepping up now")
         score += 1 
@@ -310,7 +321,8 @@ while True:
 
 while True:
     countdown(3)
-    q_21 = input("What did me and abbey have for breakfast in the hotel? ").strip().lower()
+    type_text("What did me and abbey have for breakfast in the hotel? ")
+    q_21 = input().strip().lower()
     if q_21 == "pancakes":
         print("they were massive!!!")
         score += 1
@@ -321,8 +333,9 @@ while True:
 
 while True:
     countdown(3)
-    q_22 = input('''where can the entrance to dumbledores office be found in universal'
-    'studios hollywood ''').strip().lower()
+    type_text('''where can the entrance to dumbledores office be found in universal'
+    'studios hollywood ''')
+    q_22 = input().strip().lower()
     correct_answers_22 = ["the forbidden journey", "harry potter and the forbidden journey"]
 
     if q_22 in correct_answers_22:
@@ -335,7 +348,8 @@ while True:
 
 while True:
     countdown(3)
-    q_23 = input("what date did we go to watch the ice hockey? ").strip().lower()
+    type_text("what date did we go to watch the ice hockey? ")
+    q_23 = input().strip().lower()
 
     correct_answers_23 = ["29th october", "29 october", "29 oct", "29th oct"]
 
@@ -349,7 +363,8 @@ while True:
 
 while True:
     countdown(3)
-    q_24 = input("what was the final score of the game? please write highest score - lowest score ").strip().lower()
+    type_text("what was the final score of the game? please write highest score - lowest score ")
+    q_24 = input().strip().lower()
 
     correct_answers_24 = ["7-4", "7 - 4"]
 
@@ -363,8 +378,9 @@ while True:
 
 while True:
     countdown(3)
-    q_25 = input('''what was the date we set off from england headed for holland?'
-    'please format your answer to be 25 february 2025 ''').strip().lower()
+    type_text('''what was the date we set off from england headed for holland?'
+    'please format your answer to be 25 february 2025 ''')
+    q_25 = input().strip().lower()
     if q_25 == "14 july 2023":
         print("great")
         score += 1 
@@ -375,8 +391,9 @@ while True:
 
 while True:
     countdown(3)
-    q_26 = input('''we took a river boat ride through bruges with nana and grandpa.'
-    'what did nana keep doing at every bridge? ''').strip().lower()
+    type_text('''we took a river boat ride through bruges with nana and grandpa.'
+    'what did nana keep doing at every bridge? ''')
+    q_26 = input().strip().lower()
 
     correct_answers_26 = ["ducking", "crouching", "bending over"]
     if q_26 in correct_answers_26:
@@ -389,7 +406,8 @@ while True:
 
 while True:
     countdown(3)
-    q_27 = input("what happened to dads shorts in brugges? ").strip().lower()
+    type_text("what happened to dads shorts in brugges? ")
+    q_27 = input().strip().lower()
     if q_27 == "ripped":
         print("hahaha")
         score += 1 
@@ -400,7 +418,8 @@ while True:
 
 while True:
     countdown(3)
-    q_28 = input("what did we do on the 21 july 2023? ").strip().lower()
+    type_text("what did we do on the 21 july 2023? ")
+    q_28 = input().strip().lower()
 
     correct_answers_28 = ["big bike ride", "long bike ride", "cycle all day", "cycle"]
 
@@ -414,7 +433,8 @@ while True:
 
 while True:
     countdown(3)
-    q_29 = input("what was mine and dads favourite drink whilst away? ").strip().lower()
+    type_text("what was mine and dads favourite drink whilst away? ")
+    q_29 = input().strip().lower()
     if q_29 == "amstel radler":
         print("it was refreshing")
         score += 1 
@@ -424,7 +444,8 @@ while True:
         break
 
 while True:
-    q_30 = input("where did we get dragons breath from? ").strip().lower()
+    type_text("where did we get dragons breath from? ")
+    q_30 = input().strip().lower()
 
     correct_asnwers_30 = ["market hall rotterdam", "rotterdam"]
 
