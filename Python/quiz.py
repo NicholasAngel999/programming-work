@@ -8,6 +8,8 @@ def countdown(seconds):
         print(i, end="...\n", flush=True)
         time.sleep(1)
 
+
+
 def type_text(text, delay=0.05):
     for char in text:
         sys.stdout.write(char)
