@@ -23,18 +23,6 @@ def countdown(seconds):
 
 
 score = 0
-type_text("are you ready baby")
-while True:
-    countdown(3)
-    type_text('''Hey baby, ive made you a quiz about all sorts of things from "
-    films and makeup to me and surfing''')
-    q14 = input()
-    if q14 == "yes":
-        print(320)
-        break
-    else:
-        print(420)
-        break
 
 
 
