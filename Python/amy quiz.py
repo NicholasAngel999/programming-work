@@ -36,4 +36,3 @@ def countdown(seconds):
 score = 0
 
 
-
