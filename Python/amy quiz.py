@@ -7,6 +7,9 @@
 
 import time
 import sys
+import cv2
+
+def 
 
 def type_text(text, delay=0.05):
     for char in text:
