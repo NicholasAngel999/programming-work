@@ -5,11 +5,19 @@
 #sneak some climbing in there 
 #maybe some funny questions about me 
 
+
+#img_path = "./ducks wallpaper.png"
+
+#img = cv2.imread(img_path)
+#print(img)
+#cv2.imshow("test", img)
+#cv2.waitKey(0)
+
+
 import time
 import sys
 import cv2
 
-def 
 
 def type_text(text, delay=0.05):
     for char in text:
