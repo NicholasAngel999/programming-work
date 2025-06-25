@@ -43,4 +43,9 @@ def is_correct(user_input, valid_answers, threshold=80):
 
 score = 0
 
+print('''hello gorgeous beauty. I hope you find my quiz fun and entertaining and hopefully my questions arent wrong!
+        youll start at 0 points and the program will count for you. i hope you enjoy i love you baby <3''')
+
+print("Lets start with the film round")
+
 
