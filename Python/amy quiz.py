@@ -31,7 +31,15 @@ def countdown(seconds):
     for i in range(seconds, 0, -1):
         print(i, end="...\n", flush=True)
         time.sleep(1)
+        
+from rapidfuzz import fuzz
 
+def is_correct(user_input, valid_answers, threshold=80):
+    user_input = user_input.lower().strip()
+    for ans in valid_answers:
+        if fuzz.ratio(user_input, ans.lower().strip()) >= threshold:
+            return True
+    return False
 
 score = 0
 
