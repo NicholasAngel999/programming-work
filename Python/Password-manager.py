@@ -1,0 +1,1 @@
+# Generic password manager to hold passwords try and make integration with browsers - Linux first always open source
