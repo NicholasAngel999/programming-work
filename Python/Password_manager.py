@@ -177,3 +177,23 @@ cipher = initialise_cipher(key)
 # 7: opens file in write binary mode - if doesnt exist is created 
 # 8: writes the generated key into the file so it can be reused in the future 
 # 9: Uses that key to create an encryption/decryption object (most likely Fernet(key) under the hood).
+
+
+# function to add (save passwords)
+
+def add_password(website, password):
+    if not os.path.exists('passwords.json'):
+        data = []
+    else:
+        try:
+            with open('passwords.json', 'r') as file:
+                data = json.load(file)
+        except json.JSONDecodeError: 
+            data = []
+    encrypted_password = encrypted_password(cipher, password)
+    password_entry = {'website': website, 'password': encrypted_password}
+    data.append(password_entry)
+    with open('passwords.json', 'w') as file:
+        json.dump(data, file, indent=4)
+
+#
