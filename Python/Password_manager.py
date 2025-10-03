@@ -196,4 +196,13 @@ def add_password(website, password):
     with open('passwords.json', 'w') as file:
         json.dump(data, file, indent=4)
 
-# 
+# check if passwords.json exists
+# if passwords.json doesnt exist, initialise it with an empty list
+# load existing data from passwords.json
+# handle the case where passwords.json is empty or invalid JSON
+# encrypt the password
+# create a directory to store the websites and passwords 
+# save updated list back to passwords.json
+
+
+# retrieve saved passwords
