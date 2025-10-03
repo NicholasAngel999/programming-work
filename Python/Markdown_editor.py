@@ -1,1 +1,2 @@
-# create a markdown editor first with split pane preview mode and linking and search 
+# create markdown editor to rival obsidian
+
