@@ -93,6 +93,7 @@ def register(username, master_password):
 # Open the file in write mode using a context manager.
 # Write the dictionary to the file in JSON format.
 # Print a confirmation message.
+# \n prints on a new line
 
 
 # create a logging in function 
@@ -117,5 +118,62 @@ def login(username, entered_password):
         print("\n[-] You have not registered. Please regsiter a user.\n")
         sys.exit()
 
+# funtion log in defined -- requires username and password as input 
+# entered password is important as it is being compared to master_password
+# opens user_data.json in read only format and will close at end of block
+# loads file contents into user_data as a python directory
+# stored_password_hash is set to the master_password value from user_data.
+# entered_password is hashed with hash_password() for secure comparison.
+# checks credentials with what is stored in user_data.json
+# prints a message correspondng to the outcome 
 
 
+
+# function to view websites saved in password manager 
+
+def view_websites():
+    try:
+        with open('passwords.json', 'r') as data:
+            view = json.load(data)
+            print("\n Websites youve saved..\n")
+            for x in view:
+                print(x['website'])
+            print('\n')
+
+    except FileNotFoundError:
+        print("\n[-] You have not saved aby passwords!\n")
+
+# define function websites - requires no input
+# starts a try block to catch errors that might happen while reading the file
+# open passwords.json for reading only - closes with block end - data is a file object you can read from
+# view = json.load(data) reads json from file and converts into python objects 
+# for x in view -- loop over the elements in view 
+# print(x['website']) for each x in the loop print the value at key 'website'
+# this assumes each element x is a dict that contains a 'website' key
+# except FileNotFoundError if passwords.json doesnt exist run error message
+
+
+
+# next we need to generate/load our key 
+#load/generate encryption key
+
+key_filename = 'encryption_key.key'
+if os.path.exists(key_filename):
+    with open(key_filename, 'rb') as key_file:
+        key = key_filename.read()
+else:
+    key = generate_key()
+    with open(key_filename, 'wb') as key_file:
+        key_file.write(key)
+
+cipher = initialise_cipher(key)
+
+# 1: sets filename used to save and load symmetric encryption key
+# 2: checks whether that file already exists if it does load existing key
+# 3: opens file safely in read binary mode
+# 4: reads the entire contents of teh file into the variable key
+# 5: runs the block only if key file doesnt exist
+# 6: calls a helper function (like wrapping Fernet.generate_key()) thats makes a new random encrytpion
+# 7: opens file in write binary mode - if doesnt exist is created 
+# 8: writes the generated key into the file so it can be reused in the future 
+# 9: Uses that key to create an encryption/decryption object (most likely Fernet(key) under the hood).
