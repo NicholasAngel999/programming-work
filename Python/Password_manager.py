@@ -29,3 +29,14 @@ def hash_password(password):
     sha256 = hashlib.sha256()
     sha256.update(password.encode())
     return sha256.hexdigest()
+
+# now we need a function to generate a key 
+# this is used for encrypting and decrypting passwords 
+# this has to be the same everytime so we are going to generate it once, store it
+# and keep using it 
+
+# Next we use fernet to make it able to encrypt and decrypt passwords and create
+# functions for encrypting and decrypting 
+
+# generate a secret key: done only once 
+de gen_key():
