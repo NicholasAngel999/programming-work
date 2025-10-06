@@ -262,5 +262,14 @@ while True: #loop
             print("2. Get password")
             print("3. View saved password")
             print("4. Quit")
+            password_choice = input("Enter your choice: ")
+            if password_choice == '1':
+                website = input("Enter website: ")
+                password = getpass.getpass("Enter password: ")
+                add_password(website, password)
+                print("\n[+] Password added!\n")
+            elif password_choice == '2':    # if wanrs to retrieve password
+
+
 
 
