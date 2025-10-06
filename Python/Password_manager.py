@@ -269,6 +269,20 @@ while True: #loop
                 add_password(website, password)
                 print("\n[+] Password added!\n")
             elif password_choice == '2':    # if wanrs to retrieve password
+                website = input("Enter website: ")
+                decrypted_password = get_password(website)
+                if website and decrypted_password:
+                    pyperclip.copy(decrypted_password)
+                    print(f"\n[+] password for {website}: {decrypted_password}\n[+] Password copied to clipboard.\n")
+                else:
+                    print("\n[-] Password not foun! Did you save the password?"
+                          "\nn[-] Use option 3 to see the websites you saved. \n")
+            elif password_choice == '3':
+                view_websites()
+            elif password_choice == '4':
+                break
+            elif choice == '3':
+                break
 
 
 
