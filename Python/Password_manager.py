@@ -206,3 +206,61 @@ def add_password(website, password):
 
 
 # retrieve saved passwords
+
+def get_password(website):
+    if not os.path.exists('passwords.json'):
+        return None 
+    try:
+     with open('passwords.json', 'r') as file:
+        data = json.load(file)
+    except json.JSONDecodeError:
+        data = []
+    for entry in data:
+        if entry['website'] == website:
+        decrypt_password = edcrypt_password(cipher, entry['password'])
+        return encrypted_password
+    return None
+
+# define get_passwords requires an input of a website 
+# check if 'passwords.json' exists
+# load data from 'passwords.json' 
+# everything from try to data = [] makes it loop trhough all websites and check if the required website has already been saved
+# if entry['website'] decrypts the passwword if the desired website can be found in saved file
+# then returns encrypted_password
+
+
+
+# Body/Interface/interaction
+# infintie loop to keep the program running until the user chooses to quit 
+
+while True: #loop 
+    print("1. Register")
+    print("2. Login")
+    print("3. Quit")
+    choice = input("Enter your choice:")
+    if choice == '1': # for user who want to make account
+        file = 'user_data.json'
+        if os.path.exists(file) and os.path.getsize(file) !=0:
+            print("\n[-] Master user already exisst!![-]\n")
+            sys.exit()
+        else:
+            username = input("Enter you username: ")
+            master_password = getpass.getpass("Enter your master password: ")
+            login(username, master_password)
+    elif choice =='2':
+        file = 'user_data.json'
+        if os.path.exists(file):
+            username = input("Enter your username: ")
+            master_password = getpass.getpass("Enter your master password: ")
+            login(username, master_password)
+        else:
+            print("\n[-] You have not registered. Please regsiter account. \n")
+            sys.exit()
+    # Options after successful login
+        while True:
+            print("1. Add password")
+            print("2. Get password")
+            print("3. View saved password")
+            print("4. Quit")
+
+
