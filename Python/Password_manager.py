@@ -287,8 +287,8 @@ while True: #loop
             elif password_choice == '4':
                 break
         elif choice == '3':
-elif choice == '3':
-    break
+    elif choice == '3':
+        break
 
 
 
