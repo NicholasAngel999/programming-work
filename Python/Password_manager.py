@@ -3,7 +3,7 @@
 # imports essential tools for a password manager 
 
 import json, hashlib, getpass, os, pyperclip, sys
-from cryptography, fernet import Fernet
+from cryptography.fernet import Fernet
 
 # json is a library for encoding and decoding data in JSON format 
 
