@@ -153,7 +153,8 @@ def view_websites():
 # except FileNotFoundError if passwords.json doesnt exist run error message
 
 
-
+def generate_key():
+    return Fernet.generate_key()
 # next we need to generate/load our key 
 #load/generate encryption key
 
@@ -218,7 +219,7 @@ def get_password(website):
     for entry in data:
         if entry['website'] == website:
             decrypt_password = edcrypt_password(cipher, entry['password'])
-            return encrypted_password
+        return encrypted_password
     return None
 
 # define get_passwords requires an input of a website 
