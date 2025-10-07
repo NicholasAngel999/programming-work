@@ -161,7 +161,7 @@ def generate_key():
 key_filename = 'encryption_key.key'
 if os.path.exists(key_filename):
     with open(key_filename, 'rb') as key_file:
-        key = key_filename.read()
+        key = key_file.read()
 else:
     key = generate_key()
     with open(key_filename, 'wb') as key_file:
