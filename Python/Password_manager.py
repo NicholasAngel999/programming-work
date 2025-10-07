@@ -222,7 +222,7 @@ def get_password(website):
         data = []
     for entry in data:
         if entry['website'] == website:
-            decrypt_password = edcrypt_password(cipher, entry['password'])
+            decrypt_password = decrypt_password(cipher, entry['password'])
         return encrypted_password
     return None
 
