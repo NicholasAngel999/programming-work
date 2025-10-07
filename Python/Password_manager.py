@@ -1,4 +1,4 @@
-pip install pyperclip cryptography
+# pip install pyperclip cryptography
 
 # imports essential tools for a password manager 
 
