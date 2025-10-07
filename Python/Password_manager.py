@@ -44,7 +44,7 @@ def gen_key():
 
 
 # intialise Fernet cipher with provided key
-def initialise_cipher(key)
+def initialise_cipher(key):
     return Fernet(key)
 
 
