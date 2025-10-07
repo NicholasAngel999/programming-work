@@ -84,6 +84,10 @@ def register(username, master_password):
         with open(file_name, 'w') as file:
             json.dump(user_data, file)
             print("\n[+] Registration complete!\n")
+    else:
+        with open(file_name, 'x') as file:
+            json.dump(user_data, file)
+            print("\n[+] Registration complete!!\n")
 
 # Define a function called register that takes username and master_password as inputs.
 # Hash the master password before saving it.
@@ -242,7 +246,7 @@ while True: #loop
     if choice == '1': # for user who want to make account
         file = 'user_data.json'
         if os.path.exists(file) and os.path.getsize(file) !=0:
-            print("\n[-] Master user already exisst!![-]\n")
+            print("\n[-] Master user already exists![-]\n")
             sys.exit()
         else:
             username = input("Enter you username: ")
