@@ -195,7 +195,7 @@ def add_password(website, password):
                 data = json.load(file)
         except json.JSONDecodeError: 
             data = []
-    encrypted_password = encrypted_password(cipher, password)
+    encrypted_password = encrypt_password(cipher, password)
     password_entry = {'website': website, 'password': encrypted_password}
     data.append(password_entry)
     with open('passwords.json', 'w') as file:
@@ -251,7 +251,7 @@ while True: #loop
         else:
             username = input("Enter you username: ")
             master_password = getpass.getpass("Enter your master password: ")
-            login(username, master_password)
+            register(username, master_password)
     elif choice =='2':
         file = 'user_data.json'
         if os.path.exists(file):
@@ -286,9 +286,9 @@ while True: #loop
                 view_websites()
             elif password_choice == '4':
                 break
-            elif choice == '3':
-                break
-
+        elif choice == '3':
+elif choice == '3':
+    break
 
 
 
