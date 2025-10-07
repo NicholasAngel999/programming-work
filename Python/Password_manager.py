@@ -222,8 +222,8 @@ def get_password(website):
         data = []
     for entry in data:
         if entry['website'] == website:
-            decrypt_password = decrypt_password(cipher, entry['password'])
-        return encrypted_password
+            decrypted_password = decrypt_password(cipher, entry['password'])
+        return decrypted_password
     return None
 
 # define get_passwords requires an input of a website 
