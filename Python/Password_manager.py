@@ -27,8 +27,6 @@ from cryptography.fernet import Fernet
 # create a hash function to hash the master password using SHA-256 algorithm
 def hash_password(password):
     sha256 = hashlib.sha256()
-    sha256.update(password.encode())
-    return sha256.hexdigest()
 
 # now we need a function to generate a key 
 # this is used for encrypting and decrypting passwords 
