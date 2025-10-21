@@ -42,4 +42,31 @@ def gui_view_websites():
         with open('passwords.json', 'r') as f:
             data = pm.json.load(f)
         websites = "\n".join(x['website'] for x in data)
-        messagebox.showinfo("Saved Websites"
+        messagebox.showinfo("Saved Websites", websites or "No websites saved.")
+    except FileNotFoundError:
+        messagebox.showwarning("No Data", "No saved passwords yet!")
+
+# ------------------------------
+# LAYOUT
+# ------------------------------
+
+tk.Label(root, text="Website:").pack(pady=5)
+entry_website = tk.Entry(root, width=40)
+entry_website.pack(pady=5)
+
+tk.Label(root, text="Password:").pack(pady=5)
+entry_password = tk.Entry(root, width=40, show="*")
+entry_password.pack(pady=5)
+
+frame = tk.Frame(root)
+frame.pack(pady=10)
+
+tk.Button(frame, text="Add Password", width=15, command=gui_add_password).grid(row=0, column=0, padx=5)
+tk.Button(frame, text="Get Password", width=15, command=gui_get_password).grid(row=0, column=1, padx=5)
+tk.Button(root, text="View Saved Websites", width=30, command=gui_view_websites).pack(pady=10)
+
+# ------------------------------
+# START GUI LOOP
+# ------------------------------
+
+root.mainloop()
