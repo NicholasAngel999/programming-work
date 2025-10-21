@@ -6,9 +6,10 @@ import Password_manager as pm
 
 root = tk.Tk()
 root.title("Password Manager")
+root.attributes("-type", "dialog")
 root.geometry("400x300")
 root.resizable(False, False)
-
+root.mainloop()
 # ------------------------------
 # GUI
 
