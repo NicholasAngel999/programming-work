@@ -7,16 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Nunito', sans-serif;
             background-image: url('card-image.jpg');
-            background-size: cover; /* Fixed typo here (was coer) */
+            background-size: cover; /* Fixed the typo here */
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -28,286 +24,49 @@
             position: relative;
         }
 
+        /* The hidden collage background */
+        #collage-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-wrap: wrap; align-content: flex-start;
+            z-index: 2; opacity: 0; transition: opacity 1.5s ease;
+            pointer-events: none; overflow: hidden;
+        }
+
+        .collage-img {
+            flex-grow: 1; height: 33vh; min-width: 200px; object-fit: cover;
+            border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Floating background hearts */
         .bg-heart {
-            position: absolute;
-            font-size: 24px;
-            color: rgba(223, 26, 125, 0.712);
-            animation: float 10s linear infinite;
-            bottom: -50px;
-            z-index: 1;
+            position: absolute; font-size: 24px; color: rgba(255, 192, 203, 0.8);
+            text-shadow: 0 0 5px rgba(0,0,0,0.3);
+            animation: float 10s linear infinite; bottom: -50px; z-index: 1;
         }
 
         @keyframes float {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 1);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(233, 30, 99, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
             max-width: 500px;
             width: 90%;
             position: relative;
             z-index: 10;
-            backdrop-filter: blur(5px);
             border: 2px solid #fff0f5;
         }
 
         .main-heart {
-            font-size: 80px;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 5px 15px rgba(233, 30, 99, 0.3));
+            font-size: 80px; animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block; margin-bottom: 10px;
         }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.15); } }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.15); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: #d63384;
-            font-size: 3em;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        .message {
-            color: #555;
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            min-height: 60px;
-        }
-
-        button {
-            padding: 12px 30px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-family: 'Nunito', sans-serif;
-            outline: none;
-        }
-
-        .yes-btn {
-            background: linear-gradient(45deg, #ff6b9d, #ff4757);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-            z-index: 2;
-        }
-
-        .yes-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
-        }
-
-        .no-btn {
-            background: #f1f2f6;
-            color: #747d8c;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 3;
-        }
-
-        .no-btn.absolute {
-            position: absolute;
-            transition: top 0.2s ease, left 0.2s ease;
-        }
-
-        .celebration {
-            display: none;
-            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.5); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        .celebration h2 {
-            font-family: 'Dancing Script', cursive;
-            color: #d63384;
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            animation: fall linear forwards;
-            top: -10px;
-            z-index: 5;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(720deg); }
-        }
-
-    </style>
-</head>
-<body>
-
-    <div id="hearts-container"></div>
-
-    <div class="container" id="main-card">
-        <div class="main-heart">💖</div>
-        
-        <div id="question-section">
-            <h1>Will You Be My Valentine?</h1>
-            <p class="message">
-                For the love of my life, I hope today is as special as you are! I love you baby!!
-            </p>
-            <div class="button-container">
-                <button class="yes-btn" id="yesBtn" onclick="handleYes()">Yes! 💕</button>
-                <button class="no-btn" id="noBtn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">No</button>
-            </div>
-        </div>
-        
-        <div class="celebration" id="celebration-section">
-            <div class="main-heart">💝</div>
-            <h2>Yay! Happy Valentines! 🎉</h2>
-            <p class="message">I am the luckiest person on the planet!! You're the best! 💕</p>
-        </div>
-    </div>
-
-    <script>
-        // 1. Background Hearts Animation
-        function createBgHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('bg-heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; 
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            
-            document.getElementById('hearts-container').appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 8000);
-        }
-
-        setInterval(createBgHeart, 500);
-
-        // 2. The "No" Button Dodge Logic
-        const noBtn = document.getElementById('noBtn');
-        const yesBtn = document.getElementById('yesBtn'); // Fixed: This was missing
-        const card = document.getElementById('main-card');
-
-        function dodgeButton() {
-            // Calculate available space
-            const cardRect = card.getBoundingClientRect();
-            const yesRect = yesBtn.getBoundingClientRect();
-            const noRect = noBtn.getBoundingClientRect(); // Fixed: Standardized variable name to noRect
-
-            // Yes button position relative to card container
-            const yesLeft = yesRect.left - cardRect.left;
-            const yesTop = yesRect.top - cardRect.top;
-            const yesRight = yesLeft + yesRect.width;
-            const yesBottom = yesTop + yesRect.height;
-
-            if (noBtn.style.position !== 'absolute') {
-                noBtn.style.position = 'absolute';
-                noBtn.classList.add('absolute');
-            }
-
-            // Max boundaries
-            // Using noRect now (instead of undefined btnRect)
-            const maxX = cardRect.width - noRect.width - 20; 
-            const maxY = cardRect.height - noRect.height - 20;
-
-            let randomX, randomY;
-            let overlap = true;
-            let attempts = 0;
-
-            // Loop to find a safe spot (Collision Detection)
-            while (overlap && attempts < 50) {
-                randomX = Math.random() * (maxX - 20) + 20;
-                randomY = Math.random() * (maxY - 20) + 20;
-
-                // Proposed new coordinates for No button
-                const noLeft = randomX;
-                const noTop = randomY;
-                const noRight = randomX + noRect.width;
-                const noBottom = randomY + noRect.height;
-
-                // Check if this overlaps with the Yes button (with 10px buffer)
-                const padding = 10;
-                
-                const isOverlapping = !(
-                    noRight < (yesLeft - padding) || 
-                    noLeft > (yesRight + padding) || 
-                    noBottom < (yesTop - padding) || 
-                    noTop > (yesBottom + padding)
-                );
-
-                overlap = isOverlapping;
-                attempts++;
-            }
-
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-        }
-
-        // 3. Handle "Yes" Click
-        function handleYes() {
-            const questionSection = document.getElementById('question-section');
-            const celebrationSection = document.getElementById('celebration-section');
-            const mainHeart = document.querySelector('.main-heart');
-
-            // Hide question, show celebration
-            questionSection.style.display = 'none';
-            celebrationSection.style.display = 'block';
-            mainHeart.innerHTML = "💞"; // Change heart emoji
-
-            // Trigger confetti explosion
-            createConfettiExplosion();
-        }
-
-
-        // 4. Confetti Effect
-        function createConfettiExplosion() {
-            const colors = ['#ff6b9d', '#ff4757', '#2ed573', '#eccc68', '#7bed9f'];
-            
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                
-                // Random position across the screen width
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Random animation duration
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-                
-                document.body.appendChild(confetti);
-
-                // Cleanup
-                setTimeout(() => confetti.remove(), 5000);
-            }
-        }
-    </script>
-</body>
-</html>
+        h1 { font-family: 'Dancing Script', cursive; color: #d63384; font-size: 3em; margin-bottom: 10px; }
+        .message { color: #555; font-size:
