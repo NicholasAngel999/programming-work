@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -12,9 +14,9 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Nunito', sans-serif; /* Cleaner font */
             background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd4e8 100%);
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,247 +24,258 @@
             position: relative;
         }
 
-        /* Floating hearts animation */
-        .heart {
+        /* Floating background hearts */
+        .bg-heart {
             position: absolute;
-            font-size: 30px;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0;
+            font-size: 24px;
+            color: rgba(255, 105, 180, 0.5);
+            animation: float 10s linear infinite;
+            bottom: -50px;
+            z-index: 1;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
-            background: white;
-            padding: 60px 50px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(233, 30, 99, 0.2);
             text-align: center;
             max-width: 500px;
             width: 90%;
             position: relative;
             z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 2px solid #fff0f5;
         }
 
         .main-heart {
             font-size: 80px;
             animation: heartbeat 1.5s ease-in-out infinite;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 5px 15px rgba(233, 30, 99, 0.3));
         }
 
         @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            10%, 30% {
-                transform: scale(1.1);
-            }
-            20%, 40% {
-                transform: scale(1);
-            }
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
         }
 
         h1 {
-            color: #eb165d;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-weight: normal;
+            font-family: 'Dancing Script', cursive; /* Fancy font for title */
+            color: #d63384;
+            font-size: 3em;
+            margin-bottom: 10px;
+            line-height: 1.2;
         }
 
         .message {
-            color: #666;
+            color: #555;
             font-size: 1.2em;
             line-height: 1.6;
-            margin-bottom: 40px;
-            font-style: italic;
+            margin-bottom: 30px;
         }
 
         .button-container {
             display: flex;
             gap: 20px;
             justify-content: center;
-            position: relative;
-            min-height: 60px;
+            align-items: center;
+            min-height: 60px; /* Ensures space for buttons */
         }
 
         button {
-            padding: 15px 40px;
-            font-size: 1.2em;
+            padding: 12px 30px;
+            font-size: 1.1em;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
-            font-family: 'Georgia', serif;
+            font-family: 'Nunito', sans-serif;
+            outline: none;
         }
 
         .yes-btn {
-            background: linear-gradient(135deg, #ff6b9d 0%, #e91e63 100%);
+            background: linear-gradient(45deg, #ff6b9d, #ff4757);
             color: white;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+            z-index: 2; /* Keeps Yes on top */
         }
 
         .yes-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
         }
 
+        /* Initial styling for No button */
         .no-btn {
-            background: #f0f0f0;
-            color: #666;
-            position: absolute;
-            transition: none !important;
+            background: #f1f2f6;
+            color: #747d8c;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        /* Class added when it starts moving */
+        .no-btn.absolute {
+            position: absolute;
+            transition: top 0.2s ease, left 0.2s ease;
+        }
+
+        /* Celebration Screen */
         .celebration {
             display: none;
-            animation: fadeIn 0.5s ease-in;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .celebration h2 {
-            color: #e91e63;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 3em;
+            margin-bottom: 10px;
         }
 
-        .celebration p {
-            color: #666;
-            font-size: 1.3em;
-            line-height: 1.6;
-        }
-
+        /* Confetti */
         .confetti {
             position: absolute;
             width: 10px;
             height: 10px;
-            background: #e91e63;
-            animation: confettiFall 3s ease-in-out infinite;
+            background-color: #f00;
+            animation: fall linear forwards;
+            top: -10px;
+            z-index: 5;
         }
 
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
         }
+
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <div id="hearts-container"></div>
+
+    <div class="container" id="main-card">
         <div class="main-heart">💖</div>
-        <div id="question">
+        
+        <div id="question-section">
             <h1>Will You Be My Valentine?</h1>
             <p class="message">
                 For the love of my life, I hope today is as special as you are! I love you baby!!
             </p>
             <div class="button-container">
                 <button class="yes-btn" onclick="handleYes()">Yes! 💕</button>
-                <button class="no-btn" id="noBtn" onmouseover="dodgeButton()">No</button>
+                <button class="no-btn" id="noBtn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">No</button>
             </div>
         </div>
         
-        <div class="celebration" id="celebration">
+        <div class="celebration" id="celebration-section">
             <div class="main-heart">💝</div>
-            <h2>Happy Valentines! 🎉</h2>
-            <p>I am the luckiest man on the planet!! You're the best ever! 💕</p>
+            <h2>Yay! Happy Valentines! 🎉</h2>
+            <p class="message">I am the luckiest person on the planet!! You're the best! 💕</p>
         </div>
-    </div>
     </div>
 
     <script>
-        // Create floating hearts
-        function createHeart() {
+        // 1. Background Hearts Animation
+        function createBgHeart() {
             const heart = document.createElement('div');
-            heart.className = 'heart';
+            heart.classList.add('bg-heart');
             heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            document.body.appendChild(heart);
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; 
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            document.getElementById('hearts-container').appendChild(heart);
             
             setTimeout(() => {
                 heart.remove();
             }, 8000);
         }
 
-        // Create hearts periodically
-        setInterval(createHeart, 300);
+        setInterval(createBgHeart, 500);
 
-        // Make the No button dodge the mouse
+
+        // 2. The "No" Button Dodge Logic
+        const noBtn = document.getElementById('noBtn');
+        const card = document.getElementById('main-card');
+
         function dodgeButton() {
-            const noBtn = document.getElementById('noBtn');
-            const container = noBtn.parentElement;
-            const containerRect = container.getBoundingClientRect();
-            
-            // Get random position within the container
-            const maxX = containerRect.width - noBtn.offsetWidth;
-            const maxY = containerRect.height - noBtn.offsetHeight;
-            
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
+            // Calculate available space within the card
+            // We subtract button size to ensure it doesn't overflow
+            const cardRect = card.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // Switch to absolute positioning on first hover/touch
+            if (noBtn.style.position !== 'absolute') {
+                noBtn.style.position = 'absolute';
+                noBtn.classList.add('absolute');
+            }
+
+            // Generate random coordinates within the card
+            // We add padding (20px) so it doesn't touch the very edge
+            const maxX = cardRect.width - btnRect.width - 40; 
+            const maxY = cardRect.height - btnRect.height - 40;
+
+            const randomX = Math.random() * maxX + 20;
+            const randomY = Math.random() * maxY + 20;
+
             noBtn.style.left = randomX + 'px';
             noBtn.style.top = randomY + 'px';
         }
 
-        // Handle Yes button click
+
+        // 3. Handle "Yes" Click
         function handleYes() {
-            document.getElementById('question').style.display = 'none';
-            document.getElementById('celebration').style.display = 'block';
-            
-            // Create confetti
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    createConfetti();
-                }, i * 50);
-            }
+            const questionSection = document.getElementById('question-section');
+            const celebrationSection = document.getElementById('celebration-section');
+            const mainHeart = document.querySelector('.main-heart');
+
+            // Hide question, show celebration
+            questionSection.style.display = 'none';
+            celebrationSection.style.display = 'block';
+            mainHeart.innerHTML = "💞"; // Change heart emoji
+
+            // Trigger confetti explosion
+            createConfettiExplosion();
         }
 
-        // Create confetti pieces
-        function createConfetti() {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + '%';
-            confetti.style.background = ['#e91e63', '#ff6b9d', '#ff69b4', '#ffc0cb', '#ff1493'][Math.floor(Math.random() * 5)];
-            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            confetti.style.animationDelay = Math.random() + 's';
-            document.body.appendChild(confetti);
+
+        // 4. Confetti Effect
+        function createConfettiExplosion() {
+            const colors = ['#ff6b9d', '#ff4757', '#2ed573', '#eccc68', '#7bed9f'];
             
-            setTimeout(() => {
-                confetti.remove();
-            }, 5000);
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random position across the screen width
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation duration
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                
+                document.body.appendChild(confetti);
+
+                // Cleanup
+                setTimeout(() => confetti.remove(), 5000);
+            }
         }
     </script>
 </body>
