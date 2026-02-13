@@ -7,12 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CSS STYLES --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Nunito', sans-serif;
+            /* Pink fallback color in case image is broken */
+            background-color: #ffeef8; 
+            /* Your Image */
             background-image: url('card-image.jpg');
-            background-size: cover; /* Fixed the typo here */
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -58,7 +62,7 @@
             max-width: 500px;
             width: 90%;
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Ensures card stays on top */
             border: 2px solid #fff0f5;
         }
 
@@ -69,4 +73,166 @@
         @keyframes heartbeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.15); } }
 
         h1 { font-family: 'Dancing Script', cursive; color: #d63384; font-size: 3em; margin-bottom: 10px; }
-        .message { color: #555; font-size:
+        .message { color: #555; font-size: 1.2em; margin-bottom: 30px; }
+
+        .couple-photo {
+            width: 100%; max-width: 280px; border-radius: 15px; margin: 10px 0 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 5px solid white; transform: rotate(-2deg);
+        }
+
+        .button-container { display: flex; gap: 20px; justify-content: center; align-items: center; min-height: 80px; }
+
+        button {
+            padding: 12px 30px; font-size: 1.1em; border: none; border-radius: 50px;
+            cursor: pointer; font-weight: bold; transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .yes-btn { background: linear-gradient(45deg, #ff6b9d, #ff4757); color: white; z-index: 100; position: relative; }
+        
+        /* NO BUTTON STYLES */
+        .no-btn { 
+            background: #f1f2f6; 
+            color: #747d8c; 
+            z-index: 100; 
+            position: relative; /* Starts relative, JS makes it absolute */
+        }
+
+        #question-section, #celebration-section { transition: opacity 0.5s ease-in-out; }
+        #celebration-section { display: none; opacity: 0; }
+
+        .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; animation: fall linear forwards; top: -10px; z-index: 20; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+    <div id="collage-bg"></div>
+
+    <div class="container" id="main-card">
+        <div class="main-heart">💖</div>
+        
+        <div id="question-section">
+            <h1>Will You Be My Valentine?</h1>
+            <p class="message">For the love of my life, I hope today is as special as you are! I love you baby!!</p>
+            <div class="button-container">
+                <button class="yes-btn" id="yesBtn" onclick="handleYes()">Yes! 💕</button>
+                <button class="no-btn" id="noBtn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">No</button>
+            </div>
+        </div>
+        
+        <div id="celebration-section">
+            <h2>Yay! Happy Valentines! 🎉</h2>
+            <img src="us.jpg" alt="Us Together" class="couple-photo">
+            <p class="message">I am the luckiest person on the planet!! You're the best! 💕</p>
+        </div>
+    </div>
+
+    <script>
+        // --- AUTO-DETECT PHOTOS (pic1.jpg to pic8.jpg) ---
+        const myPhotos = [];
+        for (let i = 1; i <= 8; i++) {
+            myPhotos.push('pic' + i + '.jpg');
+        }
+
+        // 1. Floating Hearts
+        function createBgHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; 
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.getElementById('hearts-container').appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 8000);
+        }
+        setInterval(createBgHeart, 500);
+
+        // 2. Button Logic
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const card = document.getElementById('main-card');
+        let yesScale = 1;
+
+        function dodgeButton() {
+            // A. Grow Yes Button
+            yesScale += 0.2;
+            yesBtn.style.transform = `scale(${yesScale})`;
+
+            // B. Move No Button
+            const cardRect = card.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // Set to absolute so it can move
+            noBtn.style.position = 'absolute';
+
+            // Calculate random position within the card
+            // We subtract the button size so it doesn't fall off the edge
+            const maxX = cardRect.width - btnRect.width - 20; 
+            const maxY = cardRect.height - btnRect.height - 20;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // 3. Handle Yes
+        function handleYes() {
+            const questionSection = document.getElementById('question-section');
+            const celebrationSection = document.getElementById('celebration-section');
+            const mainHeart = document.querySelector('.main-heart');
+            const collageBg = document.getElementById('collage-bg');
+
+            // Trigger Collage
+            buildCollage();
+            collageBg.style.opacity = '1';
+
+            // Fade out question
+            questionSection.style.opacity = 0;
+
+            setTimeout(() => {
+                questionSection.style.display = 'none';
+                celebrationSection.style.display = 'block';
+                mainHeart.innerHTML = "💞"; 
+                
+                setTimeout(() => {
+                    celebrationSection.style.opacity = 1;
+                    createConfettiExplosion();
+                }, 50);
+            }, 500);
+        }
+
+        // 4. Build Collage
+        function buildCollage() {
+            const collageContainer = document.getElementById('collage-bg');
+            collageContainer.innerHTML = '';
+            // Create 20 images for the background
+            for (let i = 0; i < 20; i++) {
+                const img = document.createElement('img');
+                img.src = myPhotos[i % myPhotos.length]; 
+                img.className = 'collage-img';
+                img.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+                collageContainer.appendChild(img);
+            }
+        }
+
+        // 5. Confetti
+        function createConfettiExplosion() {
+            const colors = ['#ff6b9d', '#ff4757', '#2ed573', '#eccc68', '#7bed9f'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
