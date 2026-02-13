@@ -14,9 +14,9 @@
         }
 
         body {
-            font-family: 'Nunito', sans-serif; /* Cleaner font */
+            font-family: 'Nunito', sans-serif;
             background-image: url('card-image.jpg');
-            background-size: coer;
+            background-size: cover; /* Fixed typo here (was coer) */
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -28,7 +28,6 @@
             position: relative;
         }
 
-        /* Floating background hearts */
         .bg-heart {
             position: absolute;
             font-size: 24px;
@@ -76,7 +75,7 @@
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive; /* Fancy font for title */
+            font-family: 'Dancing Script', cursive;
             color: #d63384;
             font-size: 3em;
             margin-bottom: 10px;
@@ -95,7 +94,7 @@
             gap: 20px;
             justify-content: center;
             align-items: center;
-            min-height: 60px; /* Ensures space for buttons */
+            min-height: 60px;
         }
 
         button {
@@ -114,7 +113,7 @@
             background: linear-gradient(45deg, #ff6b9d, #ff4757);
             color: white;
             box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-            z-index: 2; /* Keeps Yes on top */
+            z-index: 2;
         }
 
         .yes-btn:hover {
@@ -122,20 +121,19 @@
             box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
         }
 
-        /* Initial styling for No button */
         .no-btn {
             background: #f1f2f6;
             color: #747d8c;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 3;
         }
 
-        /* Class added when it starts moving */
         .no-btn.absolute {
             position: absolute;
             transition: top 0.2s ease, left 0.2s ease;
         }
 
-        /* Celebration Screen */
         .celebration {
             display: none;
             animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -153,7 +151,6 @@
             margin-bottom: 10px;
         }
 
-        /* Confetti */
         .confetti {
             position: absolute;
             width: 10px;
@@ -183,7 +180,7 @@
                 For the love of my life, I hope today is as special as you are! I love you baby!!
             </p>
             <div class="button-container">
-                <button class="yes-btn" onclick="handleYes()">Yes! 💕</button>
+                <button class="yes-btn" id="yesBtn" onclick="handleYes()">Yes! 💕</button>
                 <button class="no-btn" id="noBtn" onmouseover="dodgeButton()" ontouchstart="dodgeButton()">No</button>
             </div>
         </div>
@@ -214,19 +211,18 @@
 
         setInterval(createBgHeart, 500);
 
-
         // 2. The "No" Button Dodge Logic
         const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn'); // Fixed: This was missing
         const card = document.getElementById('main-card');
 
         function dodgeButton() {
-            // Calculate available space within the card
-            // We subtract button size to ensure it doesn't overflow
+            // Calculate available space
             const cardRect = card.getBoundingClientRect();
             const yesRect = yesBtn.getBoundingClientRect();
-            const btnRect = noBtn.getBoundingClientRect();
+            const noRect = noBtn.getBoundingClientRect(); // Fixed: Standardized variable name to noRect
 
-// Yes button position relative to card container
+            // Yes button position relative to card container
             const yesLeft = yesRect.left - cardRect.left;
             const yesTop = yesRect.top - cardRect.top;
             const yesRight = yesLeft + yesRect.width;
@@ -238,6 +234,7 @@
             }
 
             // Max boundaries
+            // Using noRect now (instead of undefined btnRect)
             const maxX = cardRect.width - noRect.width - 20; 
             const maxY = cardRect.height - noRect.height - 20;
 
@@ -246,8 +243,6 @@
             let attempts = 0;
 
             // Loop to find a safe spot (Collision Detection)
-            // We will keep rolling the dice until we find a spot 
-            // where the buttons do NOT touch.
             while (overlap && attempts < 50) {
                 randomX = Math.random() * (maxX - 20) + 20;
                 randomY = Math.random() * (maxY - 20) + 20;
