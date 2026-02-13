@@ -12,9 +12,7 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            /* Pink fallback color in case image is broken */
             background-color: #ffeef8; 
-            /* Your Image */
             background-image: url('card-image.jpg');
             background-size: cover;
             background-position: center;
@@ -28,7 +26,7 @@
             position: relative;
         }
 
-        /* The hidden collage background */
+        /* --- COLLAGE STYLES --- */
         #collage-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-wrap: wrap; align-content: flex-start;
@@ -37,7 +35,12 @@
         }
 
         .collage-img {
-            flex-grow: 1; height: 33vh; min-width: 200px; object-fit: cover;
+            flex-grow: 1; height: 33vh; min-width: 200px; 
+            
+            /* FRAMING FIX FOR COLLAGE: */
+            object-fit: cover; 
+            object-position: center; /* Keeps the subject in the middle */
+            
             border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
@@ -62,7 +65,7 @@
             max-width: 500px;
             width: 90%;
             position: relative;
-            z-index: 10; /* Ensures card stays on top */
+            z-index: 10;
             border: 2px solid #fff0f5;
         }
 
@@ -75,8 +78,17 @@
         h1 { font-family: 'Dancing Script', cursive; color: #d63384; font-size: 3em; margin-bottom: 10px; }
         .message { color: #555; font-size: 1.2em; margin-bottom: 30px; }
 
+        /* --- US.JPG STYLES --- */
         .couple-photo {
-            width: 100%; max-width: 280px; border-radius: 15px; margin: 10px 0 20px 0;
+            width: 100%; 
+            max-width: 280px; 
+            
+            /* FRAMING FIX FOR MAIN PHOTO: */
+            height: 250px; /* Fixed height is required for cropping to work */
+            object-fit: cover; 
+            object-position: center; /* Keeps the subject in the middle */
+            
+            border-radius: 15px; margin: 10px 0 20px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 5px solid white; transform: rotate(-2deg);
         }
 
@@ -90,12 +102,11 @@
 
         .yes-btn { background: linear-gradient(45deg, #ff6b9d, #ff4757); color: white; z-index: 100; position: relative; }
         
-        /* NO BUTTON STYLES */
         .no-btn { 
             background: #f1f2f6; 
             color: #747d8c; 
             z-index: 100; 
-            position: relative; /* Starts relative, JS makes it absolute */
+            position: relative; 
         }
 
         #question-section, #celebration-section { transition: opacity 0.5s ease-in-out; }
@@ -125,7 +136,7 @@
         
         <div id="celebration-section">
             <h2>Yay! Happy Valentines! 🎉</h2>
-            <img src="us.jpg" style="width: 300px; height: auto;" alt="Us Together" class="couple-photo">
+            <img src="us.jpg" alt="Us Together" class="couple-photo">
             <p class="message">I am the luckiest person on the planet!! You're the best! 💕</p>
         </div>
     </div>
@@ -165,11 +176,8 @@
             const cardRect = card.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
 
-            // Set to absolute so it can move
             noBtn.style.position = 'absolute';
 
-            // Calculate random position within the card
-            // We subtract the button size so it doesn't fall off the edge
             const maxX = cardRect.width - btnRect.width - 20; 
             const maxY = cardRect.height - btnRect.height - 20;
 
@@ -210,7 +218,6 @@
         function buildCollage() {
             const collageContainer = document.getElementById('collage-bg');
             collageContainer.innerHTML = '';
-            // Create 20 images for the background
             for (let i = 0; i < 20; i++) {
                 const img = document.createElement('img');
                 img.src = myPhotos[i % myPhotos.length]; 
