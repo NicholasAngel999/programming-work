@@ -38,7 +38,7 @@ valid_moves = []
 # piece_variable = pygame.image.load('path/to/image.png')
 
 black_pawn = pygame.image.load('piece_images/pieces-png/black_pawn.png')
-black_pawn = pygame.transform.scale(black_pawn, (80, 80))
+black_pawn = pygame.transform.scale(black_pawn, (65, 65))
 black_pawn_small = pygame.transform.scale(black_pawn, (45, 45))
 
 black_rook = pygame.image.load('piece_images/pieces-png/black_rook.png')
@@ -62,7 +62,7 @@ black_queen = pygame.transform.scale(black_queen, (80, 80))
 black_queen_small = pygame.transform.scale(black_queen, (45, 45))
 
 white_pawn = pygame.image.load('piece_images/pieces-png/white_pawn.png')
-white_pawn = pygame.transform.scale(white_pawn, (80, 80))
+white_pawn = pygame.transform.scale(white_pawn, (65, 65))
 white_pawn_small = pygame.transform.scale(white_pawn, (45, 45))
 
 white_rook = pygame.image.load('piece_images/pieces-png/white_rook.png')
@@ -84,6 +84,9 @@ white_king_small = pygame.transform.scale(white_king, (45, 45))
 white_queen = pygame.image.load('piece_images/pieces-png/white_queen.png')
 white_queen = pygame.transform.scale(white_queen, (80, 80))
 white_queen_small = pygame.transform.scale(white_queen, (45, 45))
+
+white_images = [white_pawn, white_rook, white_knight, white_bishop, white_queen, white_king]
+black_images = [black_pawn, black_rook, black_knight, black_bishop, black_queen, black_king]
 
 
 # main game loop
