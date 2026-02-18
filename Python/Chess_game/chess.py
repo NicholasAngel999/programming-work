@@ -92,6 +92,9 @@ white_images_small = [white_pawn_small, white_rook_small, white_knight_small, wh
 black_images_small = [black_pawn_small, black_rook_small, black_knight_small, black_bishop_small, black_queen_small, black_king_small]
 
 pieces_list = ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']
+
+
+
 # main game loop
 
 run = True
