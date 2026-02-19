@@ -131,6 +131,9 @@ def draw_pieces():
             screen.blit(white_pawn, (white_locations[i][0] * 100 + 20, white_locations[i][1] * 100 + 20))
         else:
             screen.blit(white_images[index], (white_locations[i][0] * 100 + 10, white_locations[i][1] * 100 + 10))
+        if turn_step < 2:
+            if selection == i:
+                pygame.draw.rect(screen, 'purple', [white_locations[i][0] * 100 + 1, white_locations[i][1] * 100 + 1, 100, 100], 2)
 
 
     for i in range(len(black_pieces)):
