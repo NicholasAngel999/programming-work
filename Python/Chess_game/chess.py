@@ -38,7 +38,7 @@ captured_pieces_black = []
 
 # 0 - white turn, no selection: 1-whites turn, place selected: 2 - black turn, no selected: 3 - black turn peice selected
 turn_step = 0
-selection = 100
+selection = 10
 valid_moves = []
 # load in game piece images (queen king rook bishop knight pawn) x 2
 # piece_variable = pygame.image.load('path/to/image.png')
