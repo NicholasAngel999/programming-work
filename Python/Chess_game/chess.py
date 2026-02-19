@@ -38,7 +38,7 @@ captured_pieces_black = []
 
 # 0 - white turn, no selection: 1-whites turn, place selected: 2 - black turn, no selected: 3 - black turn peice selected
 turn_step = 0
-selection = 100
+selection = 10
 valid_moves = []
 # load in game piece images (queen king rook bishop knight pawn) x 2
 # piece_variable = pygame.image.load('path/to/image.png')
@@ -142,7 +142,7 @@ def draw_pieces():
             screen.blit(black_pawn, (black_locations[i][0] * 100 + 20, black_locations[i][1] * 100 + 20))
         else:
             screen.blit(black_images[index], (white_locations[i][0] * 100 + 10, black_locations[i][1] * 100 + 10))
-        if turn_step > 2:
+        if turn_step >= 2:
             if selection == i:
                 pygame.draw.rect(screen, 'purple', [black_pieces[i][0] * 100 + 1, black_locations[i][1] *100 + 1, 100, 100], 2)
 
