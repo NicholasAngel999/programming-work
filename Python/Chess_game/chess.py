@@ -92,8 +92,18 @@ white_images_small = [white_pawn_small, white_rook_small, white_knight_small, wh
 black_images_small = [black_pawn_small, black_rook_small, black_knight_small, black_bishop_small, black_queen_small, black_king_small]
 
 pieces_list = ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']
+# check variables and flashing counter
 
+# draw board for game
 
+def draw_board():
+    for i in range(32):
+        column = i % 4
+        row = i // 4
+        if row % 2 == 0:
+            pygame.draw.rect(screen, 'light gray', [600 - (column * 200), row * 100, 100, 100])
+        else:
+            pygame.draw.rect(screen, 'light gray', [700 - (column * 200), row * 100, 100, 100])
 
 # main game loop
 
