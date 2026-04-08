@@ -146,9 +146,41 @@ def draw_pieces():
             if selection == i:
                 pygame.draw.rect(screen, 'purple', [black_pieces[i][0] * 100 + 1, black_locations[i][1] *100 + 1, 100, 100], 2)
 
+# function to check all pieces valid moves 
+#
+def check_options(pieces, locations, turn):
+    moves_list = []
+    all_moves_list = []
+    for i in range((pieces))
+        location = locations[i]
+        piece = pieces[i]
+        if piece == 'pawn': 
+            moves_list = check_pawn(location, turn)
 
+        elif piece == 'rook':
+            moves_list = check_rook(location, turn)
+
+         elif piece == 'knight':
+            moves_list = check_knight(location, turn)
+
+        elif piece == 'bishop':
+            moves_list = check_bishop(location, turn)
+
+         elif piece == 'queen':
+            moves_list = check_queen(location, turn)
+        
+        elif piece == 'king':
+            moves_list = check_king(location, turn)
+
+        all_moves_list.append(moves_list)
+
+    return all_moves_list
 
 # main game loop
+
+black_options = check_options(black_pieces, black_locations)
+white_options = check_options(white_pieces, white_locations)
+
 
 run = True
 while run:
@@ -174,11 +206,32 @@ while run:
                     white_locations[selection] = click_coords
                     if click_coords in black_locations: 
                         black_piece = black_locations.index(click_coords)
-                        captured_pieces_white.append(black_pieces[blackpiece])
+                        captured_pieces_white.append(black_pieces[black_piece])
                         black_pieces.pop(black_piece)
                         black_locations.pop(black_piece)
-                    black_options = check_options()
-                    white_options = check_options()
+                    black_options = check_options(black_pieces, black_locations)
+                    white_options = check_options(white_pieces, white_locations)
+                    turn_step = 2 
+                    selection = 100
+                    valid_moves = []
+            if turn_step > 1: 
+                if click_coords in black_locations:
+                    selection = black_locations.index(click_coords)
+                    if turn_step == 2:
+                        turn_step = 3
+                if click_coords in valid_moves and selection != 100:
+                    white_locations[selection] = click_coords
+                    if click_coords in white_locations: 
+                        white_piece = white_locations.index(click_coords)
+                        captured_pieces_black.append(white_pieces[white_piece])
+                        white_pieces.pop(white_piece)
+                        white_locations.pop(white_piece)
+                    black_options = check_options(black_pieces, black_locations)
+                    white_options = check_options(white_pieces, white_locations)
+                    turn_step = 0
+                    selection = 100
+                    valid_moves = []
+
 
     pygame.display.flip()
 pygame.quit()
