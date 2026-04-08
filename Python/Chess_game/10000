@@ -16,3 +16,10 @@
 : 1775613662:0;pip install pygame
 : 1775613687:0;python3 chess.py
 : 1775615421:0;git add .
+: 1775615435:0;git commit -m "venv fixed at least"
+: 1775615441:0;git push
+: 1775615458:0;cd
+: 1775641250:0;source venv/bin/activate
+: 1775641257:0;pwd
+: 1775641282:0;python3 chess.py
+: 1775643468:0;git add .
