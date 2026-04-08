@@ -198,7 +198,7 @@ def check_pawn(position, color):
             moves_list.append((position[0], position[1] - 1))
         if (position[0], position[1] - 2) not in white_locations and \
             (position[0], position[1] - 2) not in black_locations and position[1] == 6:
-            moves_list.append((position[0], position[1] + 2))
+            moves_list.append((position[0], position[1] - 2))
         if (position[0] + 1, position[1] - 1) in black_locations:
             moves_list.append((position[0] + 1, position[1] - 1))
         if (position[0] - 1, position[1] - 1) in white_locations:
@@ -216,12 +216,12 @@ def check_valid_moves():
 
 
 # draw valid moves on screen
-    def draw_valid(moves):
-    if turn_step < 2:
+ def draw_valid(moves):
+     if turn_step < 2:
         color = 'red'
     else:
         color = 'blue'
-for i in range(len(moves)):
+    for i in range(len(moves)):
     pygame.draw.circle(screen, color, (moves[i][0] * 100 + 50, moves[i][1] * 100 +50), 5)
 
 

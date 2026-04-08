@@ -23,3 +23,6 @@
 : 1775641257:0;pwd
 : 1775641282:0;python3 chess.py
 : 1775643468:0;git add .
+: 1775643480:0;git commit -m "something changed"
+: 1775643483:0;git push
+: 1775652534:0;cd
