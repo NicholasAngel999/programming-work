@@ -1,9 +1,0 @@
-: 1775613247:0;ls
-: 1775613261:0;z Python
-: 1775656672:0;/usr/bin/python /home/cole/Documents/programming-work/Python/Chess_game/chess.py
-: 1775657377:0;source venv/bin/activate
-: 1775657392:0;python3 install pip
-: 1775657597:0;source Python/Chess_game/venv/bin/activate\
-
-: 1775657602:0;/home/cole/Documents/programming-work/Python/Chess_game/venv/bin/python /home/cole/Documents/programming-work/Python/Chess_game/chess.py
-: 1775743922:0; source /home/cole/Documents/programming-work/Python/Chess_game/venv/bin/activate
