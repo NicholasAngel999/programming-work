@@ -189,21 +189,22 @@ def check_rook(position, color):
             x = 0
             y = -1
         elif i == 2:
-            x =1 
+            x=1 
             y = 0
         else: 
             x = -1
             y = 0
         while path:
-            if (position[0] + (chain * x), position[1] + (chain * y)) not in friends_list and \ 
+            if (position[0] + (chain * x), position[1] + (chain * y)) not in friends_list and \
                     0 <= position[0] + (chain * x) <= 7 and 0 <= position[1] + (chain * y) <= 7:
-                moves_list.append(position[0] + (chain * x), position[1] + (chain * y)))
+                moves_list.append((position[0] + (chain * x), position[1] + (chain * y)))
                 if (position[0] + (chain * x), position[1] + (chain * y)) in enemies_list:
                     path = False
                 chain += 1
             else:
                 path = False
     return moves_list
+
 
 
 # check valid pawn moves 
@@ -237,13 +238,37 @@ def check_pawn(position, color):
 # define moves for a bishop
 def check_bishop(position, color):
     moves_list = []
-    if color = 'white'
-        enemies_list = black_options
+    if color == 'white':
+        enemies_list = black_locations
         friends_list = white_locations
     else:
         enemies_list = white_locations
         friends_list = black_locations
-    for i in range(2)
+    
+    # Check all four possible diagonal directions: up-right, up-left, down-right, down-left
+    for i in range(4):
+        x = [-1, 1, -1, 1] if i % 2 == 0 else [1, -1, 1, -1]
+        y = [1, 1, -1, -1] if i < 2 else [-1, -1, 1, 1]
+        
+        path = True
+        chain = 1
+        
+        while path:
+            new_x = position[0] + (chain * x[i])
+            new_y = position[1] + (chain * y[i])
+            
+            if 0 <= new_x <= 7 and 0 <= new_y <= 7:
+                moves_list.append((new_x, new_y))
+                
+                if (new_x, new_y) in enemies_list:
+                    path = False
+                
+                chain += 1
+            else:
+                path = False
+    
+    return moves_list
+
 
 # check for valid moves for just selected piece
 def check_valid_moves():
