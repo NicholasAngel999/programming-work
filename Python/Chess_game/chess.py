@@ -317,6 +317,8 @@ def check_queen(position, color):
                     chain += 1
                 else:
                     path = False
+            else:
+                path = False
     return moves_list
 
 # define valid moves for king
