@@ -313,8 +313,6 @@ def check_queen(position, color):
                     moves_list.append((new_x, new_y))
                     if (new_x, new_y) in enemies_list:
                         path = False
-                    else:
-                        path = False
                     chain += 1
                 else:
                     path = False
