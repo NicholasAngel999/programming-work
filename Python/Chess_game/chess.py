@@ -123,6 +123,7 @@ def draw_board():
 
 
 
+
 # Draw pieces onto the board
 def draw_pieces():
     for i in range(len(white_pieces)):
@@ -146,8 +147,11 @@ def draw_pieces():
             if selection == i:
                 pygame.draw.rect(screen, 'purple', [black_locations[i][0] * 100 + 1, black_locations[i][1] *100 + 1, 100, 100], 2)
 
+
+
+
+
 # function to check all pieces valid moves 
-#
 def check_options(pieces, locations, turn):
     moves_list = []
     all_moves_list = []
@@ -168,6 +172,8 @@ def check_options(pieces, locations, turn):
             moves_list = check_king(location, turn)
         all_moves_list.append(moves_list)
     return all_moves_list
+
+
 
 
 # Check valid rook moves
@@ -207,6 +213,8 @@ def check_rook(position, color):
 
 
 
+
+
 # check valid pawn moves 
 
 def check_pawn(position, color):
@@ -234,6 +242,10 @@ def check_pawn(position, color):
         if (position[0] - 1, position[1] + 1) in white_locations:
             moves_list.append((position[0] - 1, position[1] + 1))
     return moves_list
+
+
+
+
 
 # define moves for a bishop
 def check_bishop(position, color):
@@ -264,6 +276,9 @@ def check_bishop(position, color):
                 path = False
     return moves_list
 
+
+
+
 # Now define valid moves of a knight
 def check_knight(position, color):
     moves_list = []
@@ -289,6 +304,10 @@ def check_knight(position, color):
                 moves_list.append((new_x, new_y))
     
     return moves_list
+
+
+
+
 
 # define valid moves for queen
 def check_queen(position, color):
@@ -320,6 +339,10 @@ def check_queen(position, color):
                 path = False
     return moves_list
 
+
+
+
+
 # define valid moves for king
 def check_king(position, color):
     moves_list = []
@@ -346,6 +369,10 @@ def check_king(position, color):
     
     return moves_list
 
+
+
+
+
 # check for valid moves for just selected piece
 def check_valid_moves():
     if turn_step < 2: 
@@ -354,6 +381,9 @@ def check_valid_moves():
         options_list = black_options
     valid_options = options_list[selection]
     return valid_options
+
+
+
 
 
 # draw valid moves on screen
@@ -382,6 +412,7 @@ while run:
     if selection != 100: 
         valid_moves = check_valid_moves()
         draw_valid(valid_moves)
+
 
 # event handling
     for event in pygame.event.get():
