@@ -299,29 +299,24 @@ def check_queen(position, color):
     else:
         enemies_list = white_locations
         friends_list = black_locations
-    
-    # Check all four possible diagonal directions: up-right, up-left, down-right, down-left
-    for i in range(4):
-        x = [-1, 1, -1, 1] if i % 2 == 0 else [1, -1, 1, -1]
-        y = [1, 1, -1, -1] if i < 2 else [-1, -1, 1, 1]
-        
-        path = True
+
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+    for dx, dy in directions:
         chain = 1
-        
+        path = True
         while path:
-            new_x = position[0] + (chain * x[i])
-            new_y = position[1] + (chain * y[i])
-            
+            new_x = position[0] + (chain * dx)
+            new_y = position[1] + (chain * dy)
             if 0 <= new_x <= 7 and 0 <= new_y <= 7:
-                moves_list.append((new_x, new_y))
-                
-                if (new_x, new_y) in enemies_list:
+                if (new_x, new_y) not in friends_list:
+                    moves_list.append((new_x, new_y))
+                    if (new_x, new_y) in enemies_list:
+                        path = False
+                    else:
+                        path = False
+                    chain += 1
+                else:
                     path = False
-                
-                chain += 1
-            else:
-                path = False
-    
     return moves_list
 
 # define valid moves for king
