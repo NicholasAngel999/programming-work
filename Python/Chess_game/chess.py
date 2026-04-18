@@ -38,7 +38,7 @@ captured_pieces_black = []
 
 # 0 - white turn, no selection: 1-whites turn, place selected: 2 - black turn, no selected: 3 - black turn peice selected
 turn_step = 0
-selection = 10
+selection = 100
 valid_moves = []
 # load in game piece images (queen king rook bishop knight pawn) x 2
 # piece_variable = pygame.image.load('path/to/image.png')
@@ -141,10 +141,10 @@ def draw_pieces():
         if black_pieces[i] == 'pawn':
             screen.blit(black_pawn, (black_locations[i][0] * 100 + 20, black_locations[i][1] * 100 + 20))
         else:
-            screen.blit(black_images[index], (white_locations[i][0] * 100 + 10, black_locations[i][1] * 100 + 10))
+            screen.blit(black_images[index], (black_locations[i][0] * 100 + 10, black_locations[i][1] * 100 + 10))
         if turn_step >= 2:
             if selection == i:
-                pygame.draw.rect(screen, 'purple', [black_pieces[i][0] * 100 + 1, black_locations[i][1] *100 + 1, 100, 100], 2)
+                pygame.draw.rect(screen, 'purple', [black_locations[i][0] * 100 + 1, black_locations[i][1] *100 + 1, 100, 100], 2)
 
 # function to check all pieces valid moves 
 #
@@ -269,6 +269,91 @@ def check_bishop(position, color):
     
     return moves_list
 
+# Now define valid moves of a knight
+def check_knight(position, color):
+    moves_list = []
+    if color == 'white':
+        enemies_list = black_locations
+        friends_list = white_locations
+    else:
+        enemies_list = white_locations
+        friends_list = black_locations
+    
+    # Check all possible knight moves (L-shapes)
+    knight_moves = [
+        (2, 1), (2, -1), (-2, 1), (-2, -1),
+        (1, 2), (1, -2), (-1, 2), (-1, -2)
+    ]
+    
+    for move in knight_moves:
+        new_x = position[0] + move[0]
+        new_y = position[1] + move[1]
+        
+        if 0 <= new_x <= 7 and 0 <= new_y <= 7:
+            if (new_x, new_y) not in friends_list:
+                moves_list.append((new_x, new_y))
+    
+    return moves_list
+
+# define valid moves for queen
+def check_queen(position, color):
+    moves_list = []
+    if color == 'white':
+        enemies_list = black_locations
+        friends_list = white_locations
+    else:
+        enemies_list = white_locations
+        friends_list = black_locations
+    
+    # Check all four possible diagonal directions: up-right, up-left, down-right, down-left
+    for i in range(4):
+        x = [-1, 1, -1, 1] if i % 2 == 0 else [1, -1, 1, -1]
+        y = [1, 1, -1, -1] if i < 2 else [-1, -1, 1, 1]
+        
+        path = True
+        chain = 1
+        
+        while path:
+            new_x = position[0] + (chain * x[i])
+            new_y = position[1] + (chain * y[i])
+            
+            if 0 <= new_x <= 7 and 0 <= new_y <= 7:
+                moves_list.append((new_x, new_y))
+                
+                if (new_x, new_y) in enemies_list:
+                    path = False
+                
+                chain += 1
+            else:
+                path = False
+    
+    return moves_list
+
+# define valid moves for king
+def check_king(position, color):
+    moves_list = []
+    if color == 'white':
+        enemies_list = black_locations
+        friends_list = white_locations
+    else:
+        enemies_list = white_locations
+        friends_list = black_locations
+    
+    # Check all eight possible king moves (one step in any direction)
+    king_moves = [
+        (1, 0), (-1, 0), (0, 1), (0, -1),
+        (1, 1), (1, -1), (-1, 1), (-1, -1)
+    ]
+    
+    for move in king_moves:
+        new_x = position[0] + move[0]
+        new_y = position[1] + move[1]
+        
+        if 0 <= new_x <= 7 and 0 <= new_y <= 7:
+            if (new_x, new_y) not in friends_list:
+                moves_list.append((new_x, new_y))
+    
+    return moves_list
 
 # check for valid moves for just selected piece
 def check_valid_moves():
@@ -338,7 +423,7 @@ while run:
                     if turn_step == 2:
                         turn_step = 3
                 if click_coords in valid_moves and selection != 100:
-                    white_locations[selection] = click_coords
+                    black_locations[selection] = click_coords
                     if click_coords in white_locations: 
                         white_piece = white_locations.index(click_coords)
                         captured_pieces_black.append(white_pieces[white_piece])
