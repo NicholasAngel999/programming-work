@@ -300,7 +300,8 @@ def check_queen(position, color):
         enemies_list = white_locations
         friends_list = black_locations
 
-    directions = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1), 
+                  (1, 1), (1, -1), (-1, 1), (-1, -1)]
     for dx, dy in directions:
         chain = 1
         path = True
