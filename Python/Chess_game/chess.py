@@ -225,11 +225,15 @@ def draw_board():
 def draw_winner(winner_color):
     pygame.draw.rect(screen, "black", [150, 200, 500, 200])
     pygame.draw.rect(screen, "gold", [150, 200, 500, 200], 5)
-    win_text = big_font.render(f"{winner_color} Wins!", True, "gold")
-    check_text = font.render("by Checkmate", True, "white")
+    if winner_color == "Draw":
+        win_text = big_font.render("Stalemate!", True, "gold")
+        sub_text = font.render("The game is a draw", True, "white")
+    else:
+        win_text = big_font.render(f"{winner_color} Wins!", True, "gold")
+        sub_text = font.render("by Checkmate", True, "white")
     restart_text = font.render("Press R to restart", True, "white")
     screen.blit(win_text, (200, 220))
-    screen.blit(check_text, (280, 290))
+    screen.blit(sub_text, (260, 290))
     screen.blit(restart_text, (260, 340))
 
 
@@ -725,6 +729,15 @@ while run:
                     ):
                         winner = "white"
                         game_over = True
+                    elif len(black_legal) == 0 and not is_in_check(
+                        "black",
+                        white_locations,
+                        black_locations,
+                        white_pieces,
+                        black_pieces,
+                    ):
+                        winner = "Draw"
+                        game_over = True
 
                     turn_step = 2
                     selection = 100
@@ -759,7 +772,15 @@ while run:
                     ):
                         winner = "Black"
                         game_over = True
-
+                    elif len(white_legal) == 0 and not is_in_check(
+                        "white",
+                        white_locations,
+                        black_locations,
+                        white_pieces,
+                        black_pieces,
+                    ):
+                        winner = "Draw"
+                        game_over = True
                     turn_step = 0
                     selection = 100
                     valid_moves = []
