@@ -377,8 +377,10 @@ def check_pawn(position, color, w_locs, b_locs):
         ):
             moves_list.append((position[0], position[1] - 1))
         if (
-            (position[0], position[1] - 2) not in w_locs
-            and (position[0], position[1] - 2) not in b_locs
+            (position[0], position[1] - 1) not in w_locs
+            and (position[0], position[1] - 1) not in b_locs
+            and (position[0], position[1] -2) not in w_locs
+            and (position[0], position[1] -2) not in b_locs
             and position[1] == 6
         ):
             moves_list.append((position[0], position[1] - 2))
@@ -394,8 +396,10 @@ def check_pawn(position, color, w_locs, b_locs):
         ):
             moves_list.append((position[0], position[1] + 1))
         if (
-            (position[0], position[1] + 2) not in w_locs
-            and (position[0], position[1] + 2) not in b_locs
+            (position[0], position[1] + 1) not in w_locs
+            and (position[0], position[1] + 1) not in b_locs
+            and (position[0], position[1] + 2) not in w_locs
+            and (position[0], position[1] + 2) not in b_locs    
             and position[1] == 1
         ):
             moves_list.append((position[0], position[1] + 2))
@@ -727,7 +731,7 @@ while run:
                         white_pieces,
                         black_pieces,
                     ):
-                        winner = "white"
+                        winner = "White"
                         game_over = True
                     elif len(black_legal) == 0 and not is_in_check(
                         "black",
@@ -739,7 +743,8 @@ while run:
                         winner = "Draw"
                         game_over = True
 
-                    turn_step = 2
+                    if not game_over:
+                        turn_step = 2
                     selection = 100
                     valid_moves = []
             if turn_step > 1:
@@ -781,7 +786,8 @@ while run:
                     ):
                         winner = "Draw"
                         game_over = True
-                    turn_step = 0
+                    if not game_over:
+                        turn_step = 0
                     selection = 100
                     valid_moves = []
     if game_over:
