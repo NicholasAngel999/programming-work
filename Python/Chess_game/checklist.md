@@ -5,7 +5,7 @@
 * [ ] Pawn promotion (auto queen or player choice)
 * [ ] Castling (king + rook move, with rules)
 * [ ] En passant
-* [ ] Stalemate detection (no legal moves + NOT in check)
+* [x] Stalemate detection (no legal moves + NOT in check)
 
 ---
 
