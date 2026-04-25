@@ -15,6 +15,8 @@ timer = pygame.time.Clock()
 fps = 60
 winner = ""
 game_over = False
+# promotion_pending: None, or ('white'/'black', pawn_index) while waiting for piece choice
+promotion_pending = None
 
 # set base directory for images
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -595,6 +597,26 @@ def draw_valid(moves):
         )
 
 
+def draw_promotion_menu(color):
+    """Draw a promotion choice panel in the right sidebar."""
+    pygame.draw.rect(screen, "dark gray", [800, 0, 200, 800])
+    pygame.draw.rect(screen, "gold", [800, 0, 200, 800], 4)
+    label = font.render("Promote to:", True, "gold")
+    screen.blit(label, (815, 20))
+    promo_pieces = ["queen", "rook", "bishop", "knight"]
+    if color == "white":
+        images = [white_queen, white_rook, white_bishop, white_knight]
+    else:
+        images = [black_queen, black_rook, black_bishop, black_knight]
+    for i, (piece, img) in enumerate(zip(promo_pieces, images)):
+        y = 60 + i * 160
+        pygame.draw.rect(screen, "gray", [810, y, 180, 140])
+        pygame.draw.rect(screen, "white", [810, y, 180, 140], 2)
+        screen.blit(img, (860, y + 30))
+        piece_label = font.render(piece.capitalize(), True, "white")
+        screen.blit(piece_label, (855, y + 110))
+
+
 # main game loop
 
 black_options = check_options(black_pieces, black_locations, "black")
@@ -697,6 +719,7 @@ while run:
                 valid_moves = []
                 winner = ""
                 game_over = False
+                promotion_pending = None
                 black_options = check_options(black_pieces, black_locations, "black")
                 white_options = check_options(white_pieces, white_locations, "white")
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -715,6 +738,12 @@ while run:
                         captured_pieces_white.append(black_pieces[black_piece])
                         black_pieces.pop(black_piece)
                         black_locations.pop(black_piece)
+                    # Check for pawn promotion (white reaches row 0)
+                    if white_pieces[selection] == "pawn" and click_coords[1] == 0:
+                        promotion_pending = ("white", selection)
+                        selection = 100
+                        valid_moves = []
+                        continue
                     black_options = check_options(
                         black_pieces, black_locations, "black"
                     )
@@ -759,6 +788,12 @@ while run:
                         captured_pieces_black.append(white_pieces[white_piece])
                         white_pieces.pop(white_piece)
                         white_locations.pop(white_piece)
+                    # Check for pawn promotion (black reaches row 7)
+                    if black_pieces[selection] == "pawn" and click_coords[1] == 7:
+                        promotion_pending = ("black", selection)
+                        selection = 100
+                        valid_moves = []
+                        continue
                     black_options = check_options(
                         black_pieces, black_locations, "black"
                     )
@@ -790,6 +825,51 @@ while run:
                         turn_step = 0
                     selection = 100
                     valid_moves = []
+    # Handle promotion menu clicks
+    if promotion_pending is not None:
+        promo_color, promo_index = promotion_pending
+        draw_promotion_menu(promo_color)
+        for event in pygame.event.get(pygame.MOUSEBUTTONDOWN):
+            if event.button == 1:
+                mx, my = event.pos
+                if 810 <= mx <= 990:
+                    promo_pieces = ["queen", "rook", "bishop", "knight"]
+                    for i, piece in enumerate(promo_pieces):
+                        y = 60 + i * 160
+                        if y <= my <= y + 140:
+                            if promo_color == "white":
+                                white_pieces[promo_index] = piece
+                            else:
+                                black_pieces[promo_index] = piece
+                            promotion_pending = None
+                            # Now do post-move checks
+                            black_options = check_options(black_pieces, black_locations, "black")
+                            white_options = check_options(white_pieces, white_locations, "white")
+                            if promo_color == "white":
+                                black_legal = []
+                                for j in range(len(black_pieces)):
+                                    black_legal += filter_legal_moves(j, black_options[j], "black")
+                                if len(black_legal) == 0 and is_in_check("black", white_locations, black_locations, white_pieces, black_pieces):
+                                    winner = "White"
+                                    game_over = True
+                                elif len(black_legal) == 0:
+                                    winner = "Draw"
+                                    game_over = True
+                                if not game_over:
+                                    turn_step = 2
+                            else:
+                                white_legal = []
+                                for j in range(len(white_pieces)):
+                                    white_legal += filter_legal_moves(j, white_options[j], "white")
+                                if len(white_legal) == 0 and is_in_check("white", white_locations, black_locations, white_pieces, black_pieces):
+                                    winner = "Black"
+                                    game_over = True
+                                elif len(white_legal) == 0:
+                                    winner = "Draw"
+                                    game_over = True
+                                if not game_over:
+                                    turn_step = 0
+                            break
     if game_over:
         draw_winner(winner)
 
