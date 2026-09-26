@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/soundwave/Documents/programming-work/Python/Chess_game/venv
+set -gx VIRTUAL_ENV /home/prime/Documents/programming-work/Python/Chess_game/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
