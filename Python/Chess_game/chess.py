@@ -134,6 +134,9 @@ black_queen = pygame.image.load(os.path.join(IMG_DIR, "black_queen.png"))
 black_queen = pygame.transform.scale(black_queen, (80, 80))
 black_queen_small = pygame.transform.scale(black_queen, (45, 45))
 
+white_moved = [False, False, False]
+black_moved = [False, False, False]
+
 white_pawn = pygame.image.load(os.path.join(IMG_DIR, "white_pawn.png"))
 white_pawn = pygame.transform.scale(white_pawn, (65, 65))
 white_pawn_small = pygame.transform.scale(white_pawn, (45, 45))
