@@ -761,18 +761,29 @@ while run:
                         turn_step = 1
                 if click_coords in valid_moves and selection != 100:
                     white_locations[selection] = click_coords
-                    if click_coords in valid_moves and selection != 100:
-                        white_locations[selection] = click_coords
+                    
+                    # --- NEW: Teleport the Rook for Castling (White) ---
+                    # Only teleport if the King is starting from its exact home square
+                    if selection == 4 and white_locations[selection] == (4, 7):
+                        if click_coords == (6, 7): # Kingside (Right)
+                            rook_index = white_locations.index((7, 7))
+                            white_locations[rook_index] = (5, 7)
+                        elif click_coords == (2, 7): # Queenside (Left)
+                            rook_index = white_locations.index((0, 7))
+                            white_locations[rook_index] = (3, 7)
+                    # ---------------------------------------------------
 
-                # New castling logic for white
-                        if selection == 0: # left rook
-                            white_moved[0] = True
-                        elif selection == 4: # king
-                            white_moved[1] = True
-                        elif selection == 7: # right rook
-                            white_moved[2] = True
-                # End of csatling for white
+                    white_locations[selection] = click_coords
 
+                    # Update castling rights for white
+                    if selection == 0: # left rook
+                        white_moved[0] = True
+                    elif selection == 4: # king
+                        white_moved[1] = True
+                    elif selection == 7: # right rook
+                        white_moved[2] = True
+
+                    if click_coords in black_locations:
                     if click_coords in black_locations:
                         black_piece = black_locations.index(click_coords)
                         captured_pieces_white.append(black_pieces[black_piece])
@@ -837,6 +848,15 @@ while run:
 
                 # End of castling for black
 
+                    # --- NEW: Teleport the Rook for Castling (Black) ---
+                    if black_pieces[selection] == 'king':
+                        if click_coords == (6, 0): # Kingside (Right)
+                            rook_index = black_locations.index((7, 0))
+                            black_locations[rook_index] = (5, 0)
+                        elif click_coords == (2, 0): # Queenside (Left)
+                            rook_index = black_locations.index((0, 0))
+                            black_locations[rook_index] = (3, 0)
+                    # ---------------------------------------------------
                     if click_coords in white_locations:
                         white_piece = white_locations.index(click_coords)
                         captured_pieces_black.append(white_pieces[white_piece])
