@@ -501,6 +501,27 @@ def check_queen(position, color, w_locs, b_locs):
                     path = False
             else:
                 path = False
+                # Castling valid moves 
+    if color == "white":
+        # Kingside (Right): King hasn't moved [1], Right Rook hasn't moved [2]
+        if not white_moved[1] and not white_moved[2]:
+            # Check if spaces (5,7) and (6,7) are empty
+            if (5, 7) not in friends_list and (5, 7) not in enemies_list and (6, 7) not in friends_list and (6, 7) not in enemies_list:
+                moves_list.append((6, 7))
+        # Queenside (Left): King hasn't moved [1], Left Rook hasn't moved [0]
+        if not white_moved[1] and not white_moved[0]:
+            # Check if spaces (1,7), (2,7), (3,7) are empty
+            if (1, 7) not in friends_list and (1, 7) not in enemies_list and (2, 7) not in friends_list and (2, 7) not in enemies_list and (3, 7) not in friends_list and (3, 7) not in enemies_list:
+                moves_list.append((2, 7))
+    else:
+        # Kingside (Right) for Black
+        if not black_moved[1] and not black_moved[2]:
+            if (5, 0) not in friends_list and (5, 0) not in enemies_list and (6, 0) not in friends_list and (6, 0) not in enemies_list:
+                moves_list.append((6, 0))
+        # Queenside (Left) for Black
+        if not black_moved[1] and not black_moved[0]:
+            if (1, 0) not in friends_list and (1, 0) not in enemies_list and (2, 0) not in friends_list and (2, 0) not in enemies_list and (3, 0) not in friends_list and (3, 0) not in enemies_list:
+                moves_list.append((2, 0))
     return moves_list
 
 
@@ -509,8 +530,10 @@ def check_king(position, color, w_locs, b_locs):
     moves_list = []
     if color == "white":
         friends_list = w_locs
+        enemies_list = b_locs
     else:
         friends_list = b_locs
+        enemies_list = w_locs
 
     king_moves = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
 
@@ -804,7 +827,7 @@ while run:
                         black_locations[selection] = click_coords
 
                 # New castling logic for black
-                
+
                         if selection == 0: # left rook
                             black_moved[0] = True
                         elif selection == 4: # king
