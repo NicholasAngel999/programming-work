@@ -1,7 +1,7 @@
 # two player chess game that will be the base of my adaptation into a THUD game
 
 import os
-from turtle import color
+#from turtle import color
 
 import pygame
 

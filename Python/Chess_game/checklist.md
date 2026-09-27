@@ -2,7 +2,7 @@
 
 ## ✅ Core Rules (required for “real chess”)
 
-* [ ] Pawn promotion (auto queen or player choice)
+* [x] Pawn promotion (auto queen or player choice)
 * [x] Castling (king + rook move, with rules)
 * [ ] En passant
 * [x] Stalemate detection (no legal moves + NOT in check)
@@ -44,12 +44,4 @@
 * [ ] Add chess clock / timers
 * [ ] Add undo move
 
----
 
-## 🧠 Suggested Order
-
-1. Pawn promotion
-2. Stalemate
-3. Castling
-4. En passant
-5. UI improvements
