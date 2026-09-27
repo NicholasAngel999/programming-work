@@ -784,7 +784,6 @@ while run:
                         white_moved[2] = True
 
                     if click_coords in black_locations:
-                    if click_coords in black_locations:
                         black_piece = black_locations.index(click_coords)
                         captured_pieces_white.append(black_pieces[black_piece])
                         black_pieces.pop(black_piece)
