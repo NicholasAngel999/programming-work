@@ -760,7 +760,6 @@ while run:
                     if turn_step == 0:
                         turn_step = 1
                 if click_coords in valid_moves and selection != 100:
-                    white_locations[selection] = click_coords
                     
                     # --- NEW: Teleport the Rook for Castling (White) ---
                     # Only teleport if the King is starting from its exact home square
