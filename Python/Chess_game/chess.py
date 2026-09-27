@@ -860,16 +860,23 @@ while run:
                         turn_step = 3
                 if click_coords in valid_moves and selection != 100:
                     
-                    # --- NEW: Teleport the Rook for Castling (Black) ---
-                    # Only teleport if the King is starting from its exact home square
-                    if selection == 4 and black_locations[selection] == (4, 0):
-                        if click_coords == (6, 0): # Kingside (Right)
-                            rook_index = black_locations.index((7, 0))
-                            black_locations[rook_index] = (5, 0)
-                        elif click_coords == (2, 0): # Queenside (Left)
-                            rook_index = black_locations.index((0, 0))
-                            black_locations[rook_index] = (3, 0)
-                    # ---------------------------------------------------
+# --- NEW: Bulletproof Castling Logic (Black) ---
+                    if black_pieces[selection] == 'king':
+                        black_moved[1] = True # The King moved!
+                        if black_locations[selection] == (4, 0): # Only teleport if starting from home
+                            if click_coords == (6, 0): # Kingside
+                                rook_index = black_locations.index((7, 0))
+                                black_locations[rook_index] = (5, 0)
+                            elif click_coords == (2, 0): # Queenside
+                                rook_index = black_locations.index((0, 0))
+                                black_locations[rook_index] = (3, 0)
+                                
+                    elif black_pieces[selection] == 'rook':
+                        if black_locations[selection] == (0, 0):
+                            black_moved[0] = True # Left rook moved
+                        elif black_locations[selection] == (7, 0):
+                            black_moved[2] = True # Right rook moved
+                    # -----------------------------------------------
 
                     black_locations[selection] = click_coords
 
