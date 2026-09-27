@@ -832,23 +832,10 @@ while run:
                     if turn_step == 2:
                         turn_step = 3
                 if click_coords in valid_moves and selection != 100:
-                    black_locations[selection] = click_coords
-                    if click_coords in valid_moves and selection != 100:
-                        black_locations[selection] = click_coords
-
-                # New castling logic for black
-
-                        if selection == 0: # left rook
-                            black_moved[0] = True
-                        elif selection == 4: # king
-                            black_moved[1] = True
-                        elif selection == 7: # right rook
-                            black_moved[2] = True
-
-                # End of castling for black
-
+                    
                     # --- NEW: Teleport the Rook for Castling (Black) ---
-                    if black_pieces[selection] == 'king':
+                    # Only teleport if the King is starting from its exact home square
+                    if selection == 4 and black_locations[selection] == (4, 0):
                         if click_coords == (6, 0): # Kingside (Right)
                             rook_index = black_locations.index((7, 0))
                             black_locations[rook_index] = (5, 0)
@@ -856,6 +843,16 @@ while run:
                             rook_index = black_locations.index((0, 0))
                             black_locations[rook_index] = (3, 0)
                     # ---------------------------------------------------
+
+                    black_locations[selection] = click_coords
+
+                    # Update castling rights for black
+                    if selection == 0: # left rook
+                        black_moved[0] = True
+                    elif selection == 4: # king
+                        black_moved[1] = True
+                    elif selection == 7: # right rook
+                        black_moved[2] = True
                     if click_coords in white_locations:
                         white_piece = white_locations.index(click_coords)
                         captured_pieces_black.append(white_pieces[white_piece])
