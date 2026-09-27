@@ -3,7 +3,7 @@
 ## ✅ Core Rules (required for “real chess”)
 
 * [ ] Pawn promotion (auto queen or player choice)
-* [ ] Castling (king + rook move, with rules)
+* [x] Castling (king + rook move, with rules)
 * [ ] En passant
 * [x] Stalemate detection (no legal moves + NOT in check)
 

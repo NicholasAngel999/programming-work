@@ -525,26 +525,26 @@ def check_king(position, color, w_locs, b_locs):
             if (new_x, new_y) not in friends_list:
                 moves_list.append((new_x, new_y))
                 # Castling valid moves 
+    # --- NEW: Castling valid moves ---
     if color == "white":
-        # Kingside (Right): King hasn't moved [1], Right Rook hasn't moved [2]
-        if not white_moved[1] and not white_moved[2]:
-            # Check if spaces (5,7) and (6,7) are empty
+        # Kingside: King hasn't moved, Rook hasn't moved, AND Rook is still alive at (7, 7)
+        if not white_moved[1] and not white_moved[2] and (7, 7) in friends_list:
             if (5, 7) not in friends_list and (5, 7) not in enemies_list and (6, 7) not in friends_list and (6, 7) not in enemies_list:
                 moves_list.append((6, 7))
-        # Queenside (Left): King hasn't moved [1], Left Rook hasn't moved [0]
-        if not white_moved[1] and not white_moved[0]:
-            # Check if spaces (1,7), (2,7), (3,7) are empty
+        # Queenside: King hasn't moved, Rook hasn't moved, AND Rook is still alive at (0, 7)
+        if not white_moved[1] and not white_moved[0] and (0, 7) in friends_list:
             if (1, 7) not in friends_list and (1, 7) not in enemies_list and (2, 7) not in friends_list and (2, 7) not in enemies_list and (3, 7) not in friends_list and (3, 7) not in enemies_list:
                 moves_list.append((2, 7))
     else:
-        # Kingside (Right) for Black
-        if not black_moved[1] and not black_moved[2]:
+        # Kingside for Black
+        if not black_moved[1] and not black_moved[2] and (7, 0) in friends_list:
             if (5, 0) not in friends_list and (5, 0) not in enemies_list and (6, 0) not in friends_list and (6, 0) not in enemies_list:
                 moves_list.append((6, 0))
-        # Queenside (Left) for Black
-        if not black_moved[1] and not black_moved[0]:
+        # Queenside for Black
+        if not black_moved[1] and not black_moved[0] and (0, 0) in friends_list:
             if (1, 0) not in friends_list and (1, 0) not in enemies_list and (2, 0) not in friends_list and (2, 0) not in enemies_list and (3, 0) not in friends_list and (3, 0) not in enemies_list:
                 moves_list.append((2, 0))
+    # ---------------------------------
     return moves_list
 
 
@@ -790,26 +790,25 @@ while run:
                         turn_step = 1
                 if click_coords in valid_moves and selection != 100:
                     
-                    # --- NEW: Teleport the Rook for Castling (White) ---
-                    # Only teleport if the King is starting from its exact home square
-                    if selection == 4 and white_locations[selection] == (4, 7):
-                        if click_coords == (6, 7): # Kingside (Right)
-                            rook_index = white_locations.index((7, 7))
-                            white_locations[rook_index] = (5, 7)
-                        elif click_coords == (2, 7): # Queenside (Left)
-                            rook_index = white_locations.index((0, 7))
-                            white_locations[rook_index] = (3, 7)
-                    # ---------------------------------------------------
+                    # --- NEW: Bulletproof Castling Logic (White) ---
+                    if white_pieces[selection] == 'king':
+                        white_moved[1] = True # The King moved!
+                        if white_locations[selection] == (4, 7): # Only teleport if starting from home
+                            if click_coords == (6, 7): # Kingside
+                                rook_index = white_locations.index((7, 7))
+                                white_locations[rook_index] = (5, 7)
+                            elif click_coords == (2, 7): # Queenside
+                                rook_index = white_locations.index((0, 7))
+                                white_locations[rook_index] = (3, 7)
+                                
+                    elif white_pieces[selection] == 'rook':
+                        if white_locations[selection] == (0, 7):
+                            white_moved[0] = True # Left rook moved
+                        elif white_locations[selection] == (7, 7):
+                            white_moved[2] = True # Right rook moved
+                    # -----------------------------------------------
 
                     white_locations[selection] = click_coords
-
-                    # Update castling rights for white
-                    if selection == 0: # left rook
-                        white_moved[0] = True
-                    elif selection == 4: # king
-                        white_moved[1] = True
-                    elif selection == 7: # right rook
-                        white_moved[2] = True
 
                     if click_coords in black_locations:
                         black_piece = black_locations.index(click_coords)
