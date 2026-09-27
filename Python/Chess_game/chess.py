@@ -723,6 +723,8 @@ while run:
                 winner = ""
                 game_over = False
                 promotion_pending = None
+                white_moved = [False, False, False]
+                black_moved = [False, False, False]
                 black_options = check_options(black_pieces, black_locations, "black")
                 white_options = check_options(white_pieces, white_locations, "white")
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
