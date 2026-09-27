@@ -1,6 +1,7 @@
 # two player chess game that will be the base of my adaptation into a THUD game
 
 import os
+from turtle import color
 
 import pygame
 
@@ -594,9 +595,37 @@ def filter_legal_moves(piece_index, candidate_moves, color):
         if not is_in_check(
             color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces
         ):
-            legal.append(move)
+            # --- NEW: Check castling out of / through check ---
+            is_castle_safe = True
+            if piece_index == 4: # If the piece moving is the King
+                if color == "white":
+                    if move == (6, 7): # Kingside
+                        temp_w_locs[piece_index] = (4, 7) # Simulate start square
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                        temp_w_locs[piece_index] = (5, 7) # Simulate transit square
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                    elif move == (2, 7): # Queenside
+                        temp_w_locs[piece_index] = (4, 7)
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                        temp_w_locs[piece_index] = (3, 7)
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                else: # Black
+                    if move == (6, 0): # Kingside
+                        temp_b_locs[piece_index] = (4, 0)
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                        temp_b_locs[piece_index] = (5, 0)
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                    elif move == (2, 0): # Queenside
+                        temp_b_locs[piece_index] = (4, 0)
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                        temp_b_locs[piece_index] = (3, 0)
+                        if is_in_check(color, temp_w_locs, temp_b_locs, temp_w_pieces, temp_b_pieces): is_castle_safe = False
+                        
+            if is_castle_safe:
+                legal.append(move)
+            # --------------------------------------------------
 
-    return legal
+    return legal    
 
 
 # check for valid moves for just selected piece
