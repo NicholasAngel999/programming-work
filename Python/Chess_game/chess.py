@@ -738,6 +738,18 @@ while run:
                         turn_step = 1
                 if click_coords in valid_moves and selection != 100:
                     white_locations[selection] = click_coords
+                    if click_coords in valid_moves and selection != 100:
+                        white_locations[selection] = click_coords
+
+                # New castling logic for white
+                        if selection == 0: # left rook
+                            white_moved[0] = True
+                        elif selection == 4: # king
+                            white_moved[1] = True
+                        elif selection == 7: # right rook
+                            white_moved[2] = True
+                # End of csatling for white
+
                     if click_coords in black_locations:
                         black_piece = black_locations.index(click_coords)
                         captured_pieces_white.append(black_pieces[black_piece])
@@ -788,6 +800,20 @@ while run:
                         turn_step = 3
                 if click_coords in valid_moves and selection != 100:
                     black_locations[selection] = click_coords
+                    if click_coords in valid_moves and selection != 100:
+                        black_locations[selection] = click_coords
+
+                # New castling logic for black
+                
+                        if selection == 0: # left rook
+                            black_moved[0] = True
+                        elif selection == 4: # king
+                            black_moved[1] = True
+                        elif selection == 7: # right rook
+                            black_moved[2] = True
+
+                # End of castling for black
+
                     if click_coords in white_locations:
                         white_piece = white_locations.index(click_coords)
                         captured_pieces_black.append(white_pieces[white_piece])
