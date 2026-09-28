@@ -137,6 +137,7 @@ black_queen_small = pygame.transform.scale(black_queen, (45, 45))
 
 white_moved = [False, False, False]
 black_moved = [False, False, False]
+ep_target = None # Tracks available square for en passant for one turn
 
 white_pawn = pygame.image.load(os.path.join(IMG_DIR, "white_pawn.png"))
 white_pawn = pygame.transform.scale(white_pawn, (65, 65))
@@ -777,6 +778,7 @@ while run:
                 promotion_pending = None
                 white_moved = [False, False, False]
                 black_moved = [False, False, False]
+                ep_target = None # Tracks available square for en passant for one turn
                 black_options = check_options(black_pieces, black_locations, "black")
                 white_options = check_options(white_pieces, white_locations, "white")
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
